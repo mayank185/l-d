@@ -1,40 +1,42 @@
 package com.metacube.learninganddevelopment.model;
 
-import com.metacube.learninganddevelopment.model.GoalChapter;
-
-import com.metacube.learninganddevelopment.model.CreditPoint;
-
-import javax.persistence.GenerationType;
-
 import com.metacube.learninganddevelopment.model.GoalLevel;
 
 import com.metacube.learninganddevelopment.model.OrgUser;
 
+import javax.persistence.OneToMany;
+
 import com.metacube.learninganddevelopment.model.GoalClassification;
 
-import javax.persistence.ManyToMany;
-
-import javax.persistence.OneToMany;
+import javax.persistence.Id;
 
 import java.sql.Timestamp;
 
-import java.util.List;
+import java.util.UUID;
+
+import com.metacube.learninganddevelopment.model.GoalChapter;
 
 import javax.persistence.GeneratedValue;
 
-import java.util.UUID;
-
-import javax.persistence.JoinColumn;
-
-import com.metacube.learninganddevelopment.model.Goal;
-
-import com.metacube.learninganddevelopment.model.TechStack;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.metacube.learninganddevelopment.model.CreditPoint;
 
 import javax.persistence.ManyToOne;
 
-import javax.persistence.Id;
+import javax.persistence.GenerationType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import com.metacube.learninganddevelopment.model.TechStack;
+
+import com.metacube.learninganddevelopment.model.Goal;
+
+import javax.persistence.ManyToMany;
+
+import javax.persistence.JoinTable;
+
+import javax.persistence.JoinColumn;
+
+import java.util.List;
 
 import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -103,10 +105,12 @@ public class Goal {
 	private GoalClassification goalClassification;
 
 	@ManyToMany
+	@JoinTable(name = "goal_member", joinColumns = @JoinColumn(name = "goalId"), inverseJoinColumns = @JoinColumn(name = "userId"))
 	@JsonIgnore
 	private List<OrgUser> goalMemberList;
 
 	@ManyToMany
+	@JoinTable(name = "goal_prerequisite", joinColumns = @JoinColumn(name = "prerequisiteGoalId"), inverseJoinColumns = @JoinColumn(name = "goalId"))
 	@JsonIgnore
 	private List<Goal> goalPrerequisiteList;
 

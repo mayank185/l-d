@@ -1,104 +1,103 @@
 package com.metacube.learninganddevelopment.model;
-import javax.persistence.GenerationType;
-
-import javax.persistence.OneToMany;
-
-import java.sql.Timestamp;
-
-import java.util.List;
 
 import javax.persistence.GeneratedValue;
 
-import java.util.UUID;
-
-import com.metacube.learninganddevelopment.model.Goal;
-
-import javax.persistence.JoinColumn;
+import javax.persistence.GenerationType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.OneToMany;
+
 import javax.persistence.Id;
+
+import java.sql.Timestamp;
+
+import com.metacube.learninganddevelopment.model.Goal;
+
+import java.util.UUID;
+
+import javax.persistence.JoinColumn;
+
+import java.util.List;
 
 import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class GoalClassification{
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private Long id;
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class GoalClassification {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
+	private UUID uuid;
 
-private UUID uuid;
+	private String classification;
 
+	private Long lastModifiedBy;
 
-private String classification;
+	private Timestamp lastModifiedDate;
 
+	private Boolean isActive;
 
-private Long lastModifiedBy;
+	@OneToMany
+	@JoinColumn(name = "goal_classification_id")
+	@JsonIgnore
+	private List<Goal> goalList;
 
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-private Timestamp lastModifiedDate;
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
+	}
 
+	public void setClassification(String classification) {
+		this.classification = classification;
+	}
 
-private Boolean isActive;
+	public void setLastModifiedBy(Long lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
 
-@OneToMany
-@JoinColumn(name="goal_classification_id")
-@JsonIgnore
-private List<Goal> goalList;
-public void setId(Long id){
-this.id=id;
-}
+	public void setLastModifiedDate(Timestamp lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
 
-public void setUuid(UUID uuid){
-this.uuid=uuid;
-}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
 
-public void setClassification(String classification){
-this.classification=classification;
-}
+	public void setGoalList(List<Goal> goalList) {
+		this.goalList = goalList;
+	}
 
-public void setLastModifiedBy(Long lastModifiedBy){
-this.lastModifiedBy=lastModifiedBy;
-}
+	public Long getId() {
+		return id;
+	}
 
-public void setLastModifiedDate(Timestamp lastModifiedDate){
-this.lastModifiedDate=lastModifiedDate;
-}
+	public UUID getUuid() {
+		return uuid;
+	}
 
-public void setIsActive(Boolean isActive){
-this.isActive=isActive;
-}
+	public String getClassification() {
+		return classification;
+	}
 
-public void setGoalList(List<Goal> goalList){
-this.goalList=goalList;
-}
-public Long getId(){
-return id;
-}
+	public Long getLastModifiedBy() {
+		return lastModifiedBy;
+	}
 
-public UUID getUuid(){
-return uuid;
-}
+	public Timestamp getLastModifiedDate() {
+		return lastModifiedDate;
+	}
 
-public String getClassification(){
-return classification;
-}
+	public Boolean getIsActive() {
+		return isActive;
+	}
 
-public Long getLastModifiedBy(){
-return lastModifiedBy;
-}
-
-public Timestamp getLastModifiedDate(){
-return lastModifiedDate;
-}
-
-public Boolean getIsActive(){
-return isActive;
-}
-
-public List<Goal> getGoalList(){
-return goalList;
-}
+	public List<Goal> getGoalList() {
+		return goalList;
+	}
 }

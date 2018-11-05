@@ -1,130 +1,126 @@
 package com.metacube.learninganddevelopment.model;
-import javax.persistence.GenerationType;
-
-import javax.persistence.OneToOne;
-
-import java.sql.Timestamp;
 
 import javax.persistence.GeneratedValue;
 
-import javax.persistence.JoinColumn;
-
-import com.metacube.learninganddevelopment.model.UserGoalClaim;
+import javax.persistence.GenerationType;
 
 import javax.persistence.Id;
 
+import java.sql.Timestamp;
+
+import com.metacube.learninganddevelopment.model.UserGoalClaim;
+
+import javax.persistence.JoinColumn;
+
+import javax.persistence.OneToOne;
+
 import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class UserGoalEvaluation{
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private Long id;
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class UserGoalEvaluation {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
+	private Double approvedCredit;
 
-private Double approvedCredit;
+	private String feedback;
 
+	private Long evaluatedBy;
 
-private String feedback;
+	private Long createdBy;
 
+	private Timestamp createdDate;
 
-private Long evaluatedBy;
+	private Long lastModifiedBy;
 
+	private Timestamp lastModifiedDate;
 
-private Long createdBy;
+	private Boolean isActive;
 
+	@OneToOne
+	@JoinColumn(name = "user_goal_claimed_id")
+	private UserGoalClaim userGoalClaim;
 
-private Timestamp createdDate;
+	public void setId(Long id) {
+		this.id = id;
+	}
 
+	public void setApprovedCredit(Double approvedCredit) {
+		this.approvedCredit = approvedCredit;
+	}
 
-private Long lastModifiedBy;
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
+	}
 
+	public void setEvaluatedBy(Long evaluatedBy) {
+		this.evaluatedBy = evaluatedBy;
+	}
 
-private Timestamp lastModifiedDate;
+	public void setCreatedBy(Long createdBy) {
+		this.createdBy = createdBy;
+	}
 
+	public void setCreatedDate(Timestamp createdDate) {
+		this.createdDate = createdDate;
+	}
 
-private Boolean isActive;
+	public void setLastModifiedBy(Long lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
 
-@OneToOne
-@JoinColumn(name="user_goal_claimed_id")
-private UserGoalClaim userGoalClaim;
-public void setId(Long id){
-this.id=id;
-}
+	public void setLastModifiedDate(Timestamp lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
 
-public void setApprovedCredit(Double approvedCredit){
-this.approvedCredit=approvedCredit;
-}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
 
-public void setFeedback(String feedback){
-this.feedback=feedback;
-}
+	public void setUserGoalClaim(UserGoalClaim userGoalClaim) {
+		this.userGoalClaim = userGoalClaim;
+	}
 
-public void setEvaluatedBy(Long evaluatedBy){
-this.evaluatedBy=evaluatedBy;
-}
+	public Long getId() {
+		return id;
+	}
 
-public void setCreatedBy(Long createdBy){
-this.createdBy=createdBy;
-}
+	public Double getApprovedCredit() {
+		return approvedCredit;
+	}
 
-public void setCreatedDate(Timestamp createdDate){
-this.createdDate=createdDate;
-}
+	public String getFeedback() {
+		return feedback;
+	}
 
-public void setLastModifiedBy(Long lastModifiedBy){
-this.lastModifiedBy=lastModifiedBy;
-}
+	public Long getEvaluatedBy() {
+		return evaluatedBy;
+	}
 
-public void setLastModifiedDate(Timestamp lastModifiedDate){
-this.lastModifiedDate=lastModifiedDate;
-}
+	public Long getCreatedBy() {
+		return createdBy;
+	}
 
-public void setIsActive(Boolean isActive){
-this.isActive=isActive;
-}
+	public Timestamp getCreatedDate() {
+		return createdDate;
+	}
 
-public void setUserGoalClaim(UserGoalClaim userGoalClaim){
-this.userGoalClaim=userGoalClaim;
-}
-public Long getId(){
-return id;
-}
+	public Long getLastModifiedBy() {
+		return lastModifiedBy;
+	}
 
-public Double getApprovedCredit(){
-return approvedCredit;
-}
+	public Timestamp getLastModifiedDate() {
+		return lastModifiedDate;
+	}
 
-public String getFeedback(){
-return feedback;
-}
+	public Boolean getIsActive() {
+		return isActive;
+	}
 
-public Long getEvaluatedBy(){
-return evaluatedBy;
-}
-
-public Long getCreatedBy(){
-return createdBy;
-}
-
-public Timestamp getCreatedDate(){
-return createdDate;
-}
-
-public Long getLastModifiedBy(){
-return lastModifiedBy;
-}
-
-public Timestamp getLastModifiedDate(){
-return lastModifiedDate;
-}
-
-public Boolean getIsActive(){
-return isActive;
-}
-
-public UserGoalClaim getUserGoalClaim(){
-return userGoalClaim;
-}
+	public UserGoalClaim getUserGoalClaim() {
+		return userGoalClaim;
+	}
 }

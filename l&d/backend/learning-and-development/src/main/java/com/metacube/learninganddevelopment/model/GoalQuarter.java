@@ -1,115 +1,113 @@
 package com.metacube.learninganddevelopment.model;
+
+import javax.persistence.GeneratedValue;
+
 import javax.persistence.GenerationType;
 
-import com.metacube.learninganddevelopment.model.UserGoal;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.OneToMany;
 
+import javax.persistence.Id;
+
+import com.metacube.learninganddevelopment.model.UserGoal;
+
 import java.sql.Timestamp;
-
-import java.util.List;
-
-import javax.persistence.GeneratedValue;
 
 import java.util.UUID;
 
 import javax.persistence.JoinColumn;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.Id;
+import java.util.List;
 
 import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class GoalQuarter{
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private Long id;
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class GoalQuarter {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
+	private UUID uuid;
 
-private UUID uuid;
+	private Long year;
 
+	private String quarter;
 
-private Long year;
+	private Long lastModifiedBy;
 
+	private Timestamp lastModifiedDate;
 
-private String quarter;
+	private Boolean isActive;
 
+	@OneToMany
+	@JoinColumn(name = "quarter_id")
+	@JsonIgnore
+	private List<UserGoal> userGoalList;
 
-private Long lastModifiedBy;
+	public void setId(Long id) {
+		this.id = id;
+	}
 
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
+	}
 
-private Timestamp lastModifiedDate;
+	public void setYear(Long year) {
+		this.year = year;
+	}
 
+	public void setQuarter(String quarter) {
+		this.quarter = quarter;
+	}
 
-private Boolean isActive;
+	public void setLastModifiedBy(Long lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
 
-@OneToMany
-@JoinColumn(name="quarter_id")
-@JsonIgnore
-private List<UserGoal> userGoalList;
-public void setId(Long id){
-this.id=id;
-}
+	public void setLastModifiedDate(Timestamp lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
 
-public void setUuid(UUID uuid){
-this.uuid=uuid;
-}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
 
-public void setYear(Long year){
-this.year=year;
-}
+	public void setUserGoalList(List<UserGoal> userGoalList) {
+		this.userGoalList = userGoalList;
+	}
 
-public void setQuarter(String quarter){
-this.quarter=quarter;
-}
+	public Long getId() {
+		return id;
+	}
 
-public void setLastModifiedBy(Long lastModifiedBy){
-this.lastModifiedBy=lastModifiedBy;
-}
+	public UUID getUuid() {
+		return uuid;
+	}
 
-public void setLastModifiedDate(Timestamp lastModifiedDate){
-this.lastModifiedDate=lastModifiedDate;
-}
+	public Long getYear() {
+		return year;
+	}
 
-public void setIsActive(Boolean isActive){
-this.isActive=isActive;
-}
+	public String getQuarter() {
+		return quarter;
+	}
 
-public void setUserGoalList(List<UserGoal> userGoalList){
-this.userGoalList=userGoalList;
-}
-public Long getId(){
-return id;
-}
+	public Long getLastModifiedBy() {
+		return lastModifiedBy;
+	}
 
-public UUID getUuid(){
-return uuid;
-}
+	public Timestamp getLastModifiedDate() {
+		return lastModifiedDate;
+	}
 
-public Long getYear(){
-return year;
-}
+	public Boolean getIsActive() {
+		return isActive;
+	}
 
-public String getQuarter(){
-return quarter;
-}
-
-public Long getLastModifiedBy(){
-return lastModifiedBy;
-}
-
-public Timestamp getLastModifiedDate(){
-return lastModifiedDate;
-}
-
-public Boolean getIsActive(){
-return isActive;
-}
-
-public List<UserGoal> getUserGoalList(){
-return userGoalList;
-}
+	public List<UserGoal> getUserGoalList() {
+		return userGoalList;
+	}
 }

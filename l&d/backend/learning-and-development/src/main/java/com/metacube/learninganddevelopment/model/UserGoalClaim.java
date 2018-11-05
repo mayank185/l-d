@@ -1,208 +1,200 @@
 package com.metacube.learninganddevelopment.model;
-import javax.persistence.GenerationType;
-
-import com.metacube.learninganddevelopment.model.UserGoal;
-
-import javax.persistence.OneToOne;
 
 import com.metacube.learninganddevelopment.model.UserGoalEvaluation;
 
-import java.sql.Timestamp;
+import javax.persistence.ManyToOne;
+
+import com.metacube.learninganddevelopment.model.AssignmentQuality;
 
 import javax.persistence.GeneratedValue;
+
+import javax.persistence.GenerationType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.Id;
+
+import com.metacube.learninganddevelopment.model.UserGoal;
+
+import java.sql.Timestamp;
 
 import java.util.UUID;
 
 import javax.persistence.JoinColumn;
 
-import com.metacube.learninganddevelopment.model.AssignmentQuality;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.ManyToOne;
-
-import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class UserGoalClaim{
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private Long id;
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class UserGoalClaim {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
+	private UUID uuid;
 
-private UUID uuid;
+	private Double claimedCredits;
 
+	private String chaptersCompleted;
 
-private Double claimedCredits;
+	private String assignmentLink;
 
+	private Double timeSpentMins;
 
-private String chaptersCompleted;
+	private String comment;
 
+	private String feedback;
 
-private String assignmentLink;
+	private Long createdBy;
 
+	private Timestamp creationDate;
 
-private Double timeSpentMins;
+	private Long lastModifiedBy;
 
+	private Timestamp lastModifiedDate;
 
-private String comment;
+	private Boolean isActive;
 
+	@OneToOne
+	@JoinColumn(name = "user_goal_id")
+	private UserGoal userGoal;
 
-private String feedback;
+	@ManyToOne
+	@JoinColumn(name = "assignment_quality_id")
+	private AssignmentQuality assignmentQuality;
 
+	@OneToOne(mappedBy = "userGoalClaim")
+	@JsonIgnore
+	private UserGoalEvaluation userGoalEvaluation;
 
-private Long createdBy;
+	public void setId(Long id) {
+		this.id = id;
+	}
 
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
+	}
 
-private Timestamp creationDate;
+	public void setClaimedCredits(Double claimedCredits) {
+		this.claimedCredits = claimedCredits;
+	}
 
+	public void setChaptersCompleted(String chaptersCompleted) {
+		this.chaptersCompleted = chaptersCompleted;
+	}
 
-private Long lastModifiedBy;
+	public void setAssignmentLink(String assignmentLink) {
+		this.assignmentLink = assignmentLink;
+	}
 
+	public void setTimeSpentMins(Double timeSpentMins) {
+		this.timeSpentMins = timeSpentMins;
+	}
 
-private Timestamp lastModifiedDate;
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
+	}
 
-private Boolean isActive;
+	public void setCreatedBy(Long createdBy) {
+		this.createdBy = createdBy;
+	}
 
-@OneToOne
-@JoinColumn(name="user_goal_id")
-private UserGoal userGoal;
+	public void setCreationDate(Timestamp creationDate) {
+		this.creationDate = creationDate;
+	}
 
-@ManyToOne
-@JoinColumn(name="assignment_quality_id")
-private AssignmentQuality assignmentQuality;
+	public void setLastModifiedBy(Long lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
 
-@OneToOne(mappedBy="userGoalClaim")
-@JsonIgnore
-private UserGoalEvaluation userGoalEvaluation;
-public void setId(Long id){
-this.id=id;
-}
+	public void setLastModifiedDate(Timestamp lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
 
-public void setUuid(UUID uuid){
-this.uuid=uuid;
-}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
 
-public void setClaimedCredits(Double claimedCredits){
-this.claimedCredits=claimedCredits;
-}
+	public void setUserGoal(UserGoal userGoal) {
+		this.userGoal = userGoal;
+	}
 
-public void setChaptersCompleted(String chaptersCompleted){
-this.chaptersCompleted=chaptersCompleted;
-}
+	public void setAssignmentQuality(AssignmentQuality assignmentQuality) {
+		this.assignmentQuality = assignmentQuality;
+	}
 
-public void setAssignmentLink(String assignmentLink){
-this.assignmentLink=assignmentLink;
-}
+	public void setUserGoalEvaluation(UserGoalEvaluation userGoalEvaluation) {
+		this.userGoalEvaluation = userGoalEvaluation;
+	}
 
-public void setTimeSpentMins(Double timeSpentMins){
-this.timeSpentMins=timeSpentMins;
-}
+	public Long getId() {
+		return id;
+	}
 
-public void setComment(String comment){
-this.comment=comment;
-}
+	public UUID getUuid() {
+		return uuid;
+	}
 
-public void setFeedback(String feedback){
-this.feedback=feedback;
-}
+	public Double getClaimedCredits() {
+		return claimedCredits;
+	}
 
-public void setCreatedBy(Long createdBy){
-this.createdBy=createdBy;
-}
+	public String getChaptersCompleted() {
+		return chaptersCompleted;
+	}
 
-public void setCreationDate(Timestamp creationDate){
-this.creationDate=creationDate;
-}
+	public String getAssignmentLink() {
+		return assignmentLink;
+	}
 
-public void setLastModifiedBy(Long lastModifiedBy){
-this.lastModifiedBy=lastModifiedBy;
-}
+	public Double getTimeSpentMins() {
+		return timeSpentMins;
+	}
 
-public void setLastModifiedDate(Timestamp lastModifiedDate){
-this.lastModifiedDate=lastModifiedDate;
-}
+	public String getComment() {
+		return comment;
+	}
 
-public void setIsActive(Boolean isActive){
-this.isActive=isActive;
-}
+	public String getFeedback() {
+		return feedback;
+	}
 
-public void setUserGoal(UserGoal userGoal){
-this.userGoal=userGoal;
-}
+	public Long getCreatedBy() {
+		return createdBy;
+	}
 
-public void setAssignmentQuality(AssignmentQuality assignmentQuality){
-this.assignmentQuality=assignmentQuality;
-}
+	public Timestamp getCreationDate() {
+		return creationDate;
+	}
 
-public void setUserGoalEvaluation(UserGoalEvaluation userGoalEvaluation){
-this.userGoalEvaluation=userGoalEvaluation;
-}
-public Long getId(){
-return id;
-}
+	public Long getLastModifiedBy() {
+		return lastModifiedBy;
+	}
 
-public UUID getUuid(){
-return uuid;
-}
+	public Timestamp getLastModifiedDate() {
+		return lastModifiedDate;
+	}
 
-public Double getClaimedCredits(){
-return claimedCredits;
-}
+	public Boolean getIsActive() {
+		return isActive;
+	}
 
-public String getChaptersCompleted(){
-return chaptersCompleted;
-}
+	public UserGoal getUserGoal() {
+		return userGoal;
+	}
 
-public String getAssignmentLink(){
-return assignmentLink;
-}
+	public AssignmentQuality getAssignmentQuality() {
+		return assignmentQuality;
+	}
 
-public Double getTimeSpentMins(){
-return timeSpentMins;
-}
-
-public String getComment(){
-return comment;
-}
-
-public String getFeedback(){
-return feedback;
-}
-
-public Long getCreatedBy(){
-return createdBy;
-}
-
-public Timestamp getCreationDate(){
-return creationDate;
-}
-
-public Long getLastModifiedBy(){
-return lastModifiedBy;
-}
-
-public Timestamp getLastModifiedDate(){
-return lastModifiedDate;
-}
-
-public Boolean getIsActive(){
-return isActive;
-}
-
-public UserGoal getUserGoal(){
-return userGoal;
-}
-
-public AssignmentQuality getAssignmentQuality(){
-return assignmentQuality;
-}
-
-public UserGoalEvaluation getUserGoalEvaluation(){
-return userGoalEvaluation;
-}
+	public UserGoalEvaluation getUserGoalEvaluation() {
+		return userGoalEvaluation;
+	}
 }

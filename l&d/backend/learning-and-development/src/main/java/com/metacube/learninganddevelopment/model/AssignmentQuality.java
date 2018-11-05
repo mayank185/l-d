@@ -1,23 +1,23 @@
 package com.metacube.learninganddevelopment.model;
-import javax.persistence.GenerationType;
-
-import javax.persistence.OneToMany;
-
-import java.sql.Timestamp;
-
-import java.util.List;
-
 import javax.persistence.GeneratedValue;
 
-import java.util.UUID;
-
-import javax.persistence.JoinColumn;
-
-import com.metacube.learninganddevelopment.model.UserGoalClaim;
+import javax.persistence.GenerationType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.OneToMany;
+
 import javax.persistence.Id;
+
+import java.sql.Timestamp;
+
+import java.util.UUID;
+
+import com.metacube.learninganddevelopment.model.UserGoalClaim;
+
+import javax.persistence.JoinColumn;
+
+import java.util.List;
 
 import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

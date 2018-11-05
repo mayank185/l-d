@@ -1,161 +1,156 @@
 package com.metacube.learninganddevelopment.model;
-import javax.persistence.GenerationType;
-
-import javax.persistence.OneToOne;
-
-import java.sql.Timestamp;
 
 import com.metacube.learninganddevelopment.model.GoalQuarter;
 
+import javax.persistence.ManyToOne;
+
 import javax.persistence.GeneratedValue;
 
-import java.util.UUID;
-
-import javax.persistence.JoinColumn;
-
-import com.metacube.learninganddevelopment.model.UserGoalClaim;
+import javax.persistence.GenerationType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.ManyToOne;
-
 import javax.persistence.Id;
+
+import java.sql.Timestamp;
+
+import java.util.UUID;
+
+import com.metacube.learninganddevelopment.model.UserGoalClaim;
+
+import javax.persistence.JoinColumn;
+
+import javax.persistence.OneToOne;
 
 import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class UserGoal{
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private Long id;
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class UserGoal {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
+	private UUID uuid;
 
-private UUID uuid;
+	private Long userId;
 
+	private String status;
 
-private Long userId;
+	private Boolean isDeleted;
 
+	private Long approvedBy;
 
-private String status;
+	private Long createdBy;
 
+	private Timestamp creationDate;
 
-private Boolean isDeleted;
+	private Long lastModifiedBy;
 
+	private Timestamp lastModifiedDate;
 
-private Long approvedBy;
+	@ManyToOne
+	@JoinColumn(name = "quarter_id")
+	private GoalQuarter goalQuarter;
 
+	@OneToOne(mappedBy = "userGoal")
+	@JsonIgnore
+	private UserGoalClaim userGoalClaim;
 
-private Long createdBy;
+	public void setId(Long id) {
+		this.id = id;
+	}
 
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
+	}
 
-private Timestamp creationDate;
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-private Long lastModifiedBy;
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 
+	public void setApprovedBy(Long approvedBy) {
+		this.approvedBy = approvedBy;
+	}
 
-private Timestamp lastModifiedDate;
+	public void setCreatedBy(Long createdBy) {
+		this.createdBy = createdBy;
+	}
 
-@ManyToOne
-@JoinColumn(name="quarter_id")
-private GoalQuarter goalQuarter;
+	public void setCreationDate(Timestamp creationDate) {
+		this.creationDate = creationDate;
+	}
 
-@OneToOne(mappedBy="userGoal")
-@JsonIgnore
-private UserGoalClaim userGoalClaim;
-public void setId(Long id){
-this.id=id;
-}
+	public void setLastModifiedBy(Long lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
 
-public void setUuid(UUID uuid){
-this.uuid=uuid;
-}
+	public void setLastModifiedDate(Timestamp lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
 
-public void setUserId(Long userId){
-this.userId=userId;
-}
+	public void setGoalQuarter(GoalQuarter goalQuarter) {
+		this.goalQuarter = goalQuarter;
+	}
 
-public void setStatus(String status){
-this.status=status;
-}
+	public void setUserGoalClaim(UserGoalClaim userGoalClaim) {
+		this.userGoalClaim = userGoalClaim;
+	}
 
-public void setIsDeleted(Boolean isDeleted){
-this.isDeleted=isDeleted;
-}
+	public Long getId() {
+		return id;
+	}
 
-public void setApprovedBy(Long approvedBy){
-this.approvedBy=approvedBy;
-}
+	public UUID getUuid() {
+		return uuid;
+	}
 
-public void setCreatedBy(Long createdBy){
-this.createdBy=createdBy;
-}
+	public Long getUserId() {
+		return userId;
+	}
 
-public void setCreationDate(Timestamp creationDate){
-this.creationDate=creationDate;
-}
+	public String getStatus() {
+		return status;
+	}
 
-public void setLastModifiedBy(Long lastModifiedBy){
-this.lastModifiedBy=lastModifiedBy;
-}
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
 
-public void setLastModifiedDate(Timestamp lastModifiedDate){
-this.lastModifiedDate=lastModifiedDate;
-}
+	public Long getApprovedBy() {
+		return approvedBy;
+	}
 
-public void setGoalQuarter(GoalQuarter goalQuarter){
-this.goalQuarter=goalQuarter;
-}
+	public Long getCreatedBy() {
+		return createdBy;
+	}
 
-public void setUserGoalClaim(UserGoalClaim userGoalClaim){
-this.userGoalClaim=userGoalClaim;
-}
-public Long getId(){
-return id;
-}
+	public Timestamp getCreationDate() {
+		return creationDate;
+	}
 
-public UUID getUuid(){
-return uuid;
-}
+	public Long getLastModifiedBy() {
+		return lastModifiedBy;
+	}
 
-public Long getUserId(){
-return userId;
-}
+	public Timestamp getLastModifiedDate() {
+		return lastModifiedDate;
+	}
 
-public String getStatus(){
-return status;
-}
+	public GoalQuarter getGoalQuarter() {
+		return goalQuarter;
+	}
 
-public Boolean getIsDeleted(){
-return isDeleted;
-}
-
-public Long getApprovedBy(){
-return approvedBy;
-}
-
-public Long getCreatedBy(){
-return createdBy;
-}
-
-public Timestamp getCreationDate(){
-return creationDate;
-}
-
-public Long getLastModifiedBy(){
-return lastModifiedBy;
-}
-
-public Timestamp getLastModifiedDate(){
-return lastModifiedDate;
-}
-
-public GoalQuarter getGoalQuarter(){
-return goalQuarter;
-}
-
-public UserGoalClaim getUserGoalClaim(){
-return userGoalClaim;
-}
+	public UserGoalClaim getUserGoalClaim() {
+		return userGoalClaim;
+	}
 }

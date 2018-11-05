@@ -1,90 +1,88 @@
 package com.metacube.learninganddevelopment.model;
-import javax.persistence.GenerationType;
-
-import java.sql.Timestamp;
-
-import javax.persistence.GeneratedValue;
 
 import javax.persistence.Id;
 
+import javax.persistence.GenerationType;
+
+import javax.persistence.GeneratedValue;
+
+import java.sql.Timestamp;
+
 import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class UserRole{
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private Long id;
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class UserRole {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
+	private String role;
 
-private String role;
+	private Long createdBy;
 
+	private Long lastModifiedBy;
 
-private Long createdBy;
+	private Timestamp createdDate;
 
+	private Timestamp lastModifiedDate;
 
-private Long lastModifiedBy;
+	private Boolean isActive;
 
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-private Timestamp createdDate;
+	public void setRole(String role) {
+		this.role = role;
+	}
 
+	public void setCreatedBy(Long createdBy) {
+		this.createdBy = createdBy;
+	}
 
-private Timestamp lastModifiedDate;
+	public void setLastModifiedBy(Long lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
 
+	public void setCreatedDate(Timestamp createdDate) {
+		this.createdDate = createdDate;
+	}
 
-private Boolean isActive;
-public void setId(Long id){
-this.id=id;
-}
+	public void setLastModifiedDate(Timestamp lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
 
-public void setRole(String role){
-this.role=role;
-}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
 
-public void setCreatedBy(Long createdBy){
-this.createdBy=createdBy;
-}
+	public Long getId() {
+		return id;
+	}
 
-public void setLastModifiedBy(Long lastModifiedBy){
-this.lastModifiedBy=lastModifiedBy;
-}
+	public String getRole() {
+		return role;
+	}
 
-public void setCreatedDate(Timestamp createdDate){
-this.createdDate=createdDate;
-}
+	public Long getCreatedBy() {
+		return createdBy;
+	}
 
-public void setLastModifiedDate(Timestamp lastModifiedDate){
-this.lastModifiedDate=lastModifiedDate;
-}
+	public Long getLastModifiedBy() {
+		return lastModifiedBy;
+	}
 
-public void setIsActive(Boolean isActive){
-this.isActive=isActive;
-}
-public Long getId(){
-return id;
-}
+	public Timestamp getCreatedDate() {
+		return createdDate;
+	}
 
-public String getRole(){
-return role;
-}
+	public Timestamp getLastModifiedDate() {
+		return lastModifiedDate;
+	}
 
-public Long getCreatedBy(){
-return createdBy;
-}
-
-public Long getLastModifiedBy(){
-return lastModifiedBy;
-}
-
-public Timestamp getCreatedDate(){
-return createdDate;
-}
-
-public Timestamp getLastModifiedDate(){
-return lastModifiedDate;
-}
-
-public Boolean getIsActive(){
-return isActive;
-}
+	public Boolean getIsActive() {
+		return isActive;
+	}
 }

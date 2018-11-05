@@ -1,152 +1,146 @@
 package com.metacube.learninganddevelopment.model;
-import javax.persistence.GenerationType;
 
-import java.sql.Timestamp;
+import javax.persistence.ManyToOne;
 
 import javax.persistence.GeneratedValue;
+
+import javax.persistence.GenerationType;
+
+import javax.persistence.Id;
+
+import java.sql.Timestamp;
 
 import com.metacube.learninganddevelopment.model.Goal;
 
 import javax.persistence.JoinColumn;
 
-import javax.persistence.ManyToOne;
-
-import javax.persistence.Id;
-
 import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class GoalChapter{
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private Long id;
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class GoalChapter {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
+	private String name;
 
-private String name;
+	private Float credits;
 
+	private String contentLink;
 
-private Float credits;
+	private Integer chapterSequence;
 
+	private String additionalLink;
 
-private String contentLink;
+	private Long createdBy;
 
+	private Timestamp createdDate;
 
-private Integer chapterSequence;
+	private Long lastModifiedBy;
 
+	private Timestamp lastModifiedDate;
 
-private String additionalLink;
+	private Boolean isActive;
 
+	@ManyToOne
+	@JoinColumn(name = "goal_id")
+	private Goal goal;
 
-private Long createdBy;
+	public void setId(Long id) {
+		this.id = id;
+	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
 
-private Timestamp createdDate;
+	public void setCredits(Float credits) {
+		this.credits = credits;
+	}
 
+	public void setContentLink(String contentLink) {
+		this.contentLink = contentLink;
+	}
 
-private Long lastModifiedBy;
+	public void setChapterSequence(Integer chapterSequence) {
+		this.chapterSequence = chapterSequence;
+	}
 
+	public void setAdditionalLink(String additionalLink) {
+		this.additionalLink = additionalLink;
+	}
 
-private Timestamp lastModifiedDate;
+	public void setCreatedBy(Long createdBy) {
+		this.createdBy = createdBy;
+	}
 
+	public void setCreatedDate(Timestamp createdDate) {
+		this.createdDate = createdDate;
+	}
 
-private Boolean isActive;
+	public void setLastModifiedBy(Long lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
 
-@ManyToOne
-@JoinColumn(name="goal_id")
-private Goal goal;
-public void setId(Long id){
-this.id=id;
-}
+	public void setLastModifiedDate(Timestamp lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
 
-public void setName(String name){
-this.name=name;
-}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
 
-public void setCredits(Float credits){
-this.credits=credits;
-}
+	public void setGoal(Goal goal) {
+		this.goal = goal;
+	}
 
-public void setContentLink(String contentLink){
-this.contentLink=contentLink;
-}
+	public Long getId() {
+		return id;
+	}
 
-public void setChapterSequence(Integer chapterSequence){
-this.chapterSequence=chapterSequence;
-}
+	public String getName() {
+		return name;
+	}
 
-public void setAdditionalLink(String additionalLink){
-this.additionalLink=additionalLink;
-}
+	public Float getCredits() {
+		return credits;
+	}
 
-public void setCreatedBy(Long createdBy){
-this.createdBy=createdBy;
-}
+	public String getContentLink() {
+		return contentLink;
+	}
 
-public void setCreatedDate(Timestamp createdDate){
-this.createdDate=createdDate;
-}
+	public Integer getChapterSequence() {
+		return chapterSequence;
+	}
 
-public void setLastModifiedBy(Long lastModifiedBy){
-this.lastModifiedBy=lastModifiedBy;
-}
+	public String getAdditionalLink() {
+		return additionalLink;
+	}
 
-public void setLastModifiedDate(Timestamp lastModifiedDate){
-this.lastModifiedDate=lastModifiedDate;
-}
+	public Long getCreatedBy() {
+		return createdBy;
+	}
 
-public void setIsActive(Boolean isActive){
-this.isActive=isActive;
-}
+	public Timestamp getCreatedDate() {
+		return createdDate;
+	}
 
-public void setGoal(Goal goal){
-this.goal=goal;
-}
-public Long getId(){
-return id;
-}
+	public Long getLastModifiedBy() {
+		return lastModifiedBy;
+	}
 
-public String getName(){
-return name;
-}
+	public Timestamp getLastModifiedDate() {
+		return lastModifiedDate;
+	}
 
-public Float getCredits(){
-return credits;
-}
+	public Boolean getIsActive() {
+		return isActive;
+	}
 
-public String getContentLink(){
-return contentLink;
-}
-
-public Integer getChapterSequence(){
-return chapterSequence;
-}
-
-public String getAdditionalLink(){
-return additionalLink;
-}
-
-public Long getCreatedBy(){
-return createdBy;
-}
-
-public Timestamp getCreatedDate(){
-return createdDate;
-}
-
-public Long getLastModifiedBy(){
-return lastModifiedBy;
-}
-
-public Timestamp getLastModifiedDate(){
-return lastModifiedDate;
-}
-
-public Boolean getIsActive(){
-return isActive;
-}
-
-public Goal getGoal(){
-return goal;
-}
+	public Goal getGoal() {
+		return goal;
+	}
 }
