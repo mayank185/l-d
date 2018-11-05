@@ -1,40 +1,46 @@
 package com.metacube.learninganddevelopment.model;
 
-import com.metacube.learninganddevelopment.model.GoalLevel;
-
-import com.metacube.learninganddevelopment.model.GoalClassification;
-
 import com.metacube.learninganddevelopment.model.GoalChapter;
-
-import javax.persistence.Id;
-
-import java.sql.Timestamp;
-
-import javax.persistence.GeneratedValue;
 
 import com.metacube.learninganddevelopment.model.CreditPoint;
 
-import com.metacube.learninganddevelopment.model.Goal;
-
-import javax.persistence.ManyToOne;
-
 import javax.persistence.GenerationType;
 
-import javax.persistence.ManyToMany;
-
-import java.util.UUID;
+import com.metacube.learninganddevelopment.model.GoalLevel;
 
 import com.metacube.learninganddevelopment.model.OrgUser;
 
-import java.util.List;
+import com.metacube.learninganddevelopment.model.GoalClassification;
+
+import javax.persistence.ManyToMany;
 
 import javax.persistence.OneToMany;
 
+import java.sql.Timestamp;
+
+import java.util.List;
+
+import javax.persistence.GeneratedValue;
+
+import java.util.UUID;
+
+import javax.persistence.JoinColumn;
+
+import com.metacube.learninganddevelopment.model.Goal;
+
 import com.metacube.learninganddevelopment.model.TechStack;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.ManyToOne;
+
+import javax.persistence.Id;
+
 import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Goal {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -81,24 +87,32 @@ public class Goal {
 	private String courseLink;
 
 	@ManyToOne
+	@JoinColumn(name = "tech_stack_id")
 	private TechStack techStack;
 
 	@ManyToOne
+	@JoinColumn(name = "level_id")
 	private GoalLevel goalLevel;
 
 	@ManyToOne
+	@JoinColumn(name = "credit_point_id")
 	private CreditPoint creditPoint;
 
 	@ManyToOne
+	@JoinColumn(name = "goal_classification_id")
 	private GoalClassification goalClassification;
 
 	@ManyToMany
+	@JsonIgnore
 	private List<OrgUser> goalMemberList;
 
 	@ManyToMany
+	@JsonIgnore
 	private List<Goal> goalPrerequisiteList;
 
 	@OneToMany
+	@JoinColumn(name = "goal_id")
+	@JsonIgnore
 	private List<GoalChapter> goalChapterList;
 
 	public void setId(Long id) {

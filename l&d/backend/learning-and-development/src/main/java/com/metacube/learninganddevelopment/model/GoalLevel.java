@@ -1,95 +1,104 @@
 package com.metacube.learninganddevelopment.model;
+import javax.persistence.GenerationType;
 
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import java.sql.Timestamp;
 
-import javax.persistence.GeneratedValue;
+import java.util.List;
 
-import javax.persistence.GenerationType;
+import javax.persistence.GeneratedValue;
 
 import java.util.UUID;
 
 import com.metacube.learninganddevelopment.model.Goal;
 
-import java.util.List;
+import javax.persistence.JoinColumn;
 
-import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.Id;
 
 import javax.persistence.Entity;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
-public class GoalLevel {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class GoalLevel{
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+private Long id;
 
-	private UUID uuid;
 
-	private String level;
+private UUID uuid;
 
-	private Long lastModifiedBy;
 
-	private Timestamp lastModifiedDate;
+private String level;
 
-	private Boolean isActive;
 
-	@OneToMany
-	private List<Goal> goalList;
+private Long lastModifiedBy;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
+private Timestamp lastModifiedDate;
 
-	public void setLevel(String level) {
-		this.level = level;
-	}
 
-	public void setLastModifiedBy(Long lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
-	}
+private Boolean isActive;
 
-	public void setLastModifiedDate(Timestamp lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
+@OneToMany
+@JoinColumn(name="level_id")
+@JsonIgnore
+private List<Goal> goalList;
+public void setId(Long id){
+this.id=id;
+}
 
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
-	}
+public void setUuid(UUID uuid){
+this.uuid=uuid;
+}
 
-	public void setGoalList(List<Goal> goalList) {
-		this.goalList = goalList;
-	}
+public void setLevel(String level){
+this.level=level;
+}
 
-	public Long getId() {
-		return id;
-	}
+public void setLastModifiedBy(Long lastModifiedBy){
+this.lastModifiedBy=lastModifiedBy;
+}
 
-	public UUID getUuid() {
-		return uuid;
-	}
+public void setLastModifiedDate(Timestamp lastModifiedDate){
+this.lastModifiedDate=lastModifiedDate;
+}
 
-	public String getLevel() {
-		return level;
-	}
+public void setIsActive(Boolean isActive){
+this.isActive=isActive;
+}
 
-	public Long getLastModifiedBy() {
-		return lastModifiedBy;
-	}
+public void setGoalList(List<Goal> goalList){
+this.goalList=goalList;
+}
+public Long getId(){
+return id;
+}
 
-	public Timestamp getLastModifiedDate() {
-		return lastModifiedDate;
-	}
+public UUID getUuid(){
+return uuid;
+}
 
-	public Boolean getIsActive() {
-		return isActive;
-	}
+public String getLevel(){
+return level;
+}
 
-	public List<Goal> getGoalList() {
-		return goalList;
-	}
+public Long getLastModifiedBy(){
+return lastModifiedBy;
+}
+
+public Timestamp getLastModifiedDate(){
+return lastModifiedDate;
+}
+
+public Boolean getIsActive(){
+return isActive;
+}
+
+public List<Goal> getGoalList(){
+return goalList;
+}
 }

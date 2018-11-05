@@ -1,201 +1,208 @@
 package com.metacube.learninganddevelopment.model;
+import javax.persistence.GenerationType;
 
-import javax.persistence.Id;
+import com.metacube.learninganddevelopment.model.UserGoal;
+
+import javax.persistence.OneToOne;
+
+import com.metacube.learninganddevelopment.model.UserGoalEvaluation;
 
 import java.sql.Timestamp;
 
 import javax.persistence.GeneratedValue;
 
-import javax.persistence.ManyToOne;
-
-import javax.persistence.GenerationType;
-
-import javax.persistence.OneToOne;
-
 import java.util.UUID;
 
-import com.metacube.learninganddevelopment.model.UserGoal;
+import javax.persistence.JoinColumn;
 
 import com.metacube.learninganddevelopment.model.AssignmentQuality;
 
-import com.metacube.learninganddevelopment.model.UserGoalEvaluation;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.ManyToOne;
+
+import javax.persistence.Id;
 
 import javax.persistence.Entity;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
-public class UserGoalClaim {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class UserGoalClaim{
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+private Long id;
 
-	private UUID uuid;
 
-	private Double claimedCredits;
+private UUID uuid;
 
-	private String chaptersCompleted;
 
-	private String assignmentLink;
+private Double claimedCredits;
 
-	private Double timeSpentMins;
 
-	private String comment;
+private String chaptersCompleted;
 
-	private String feedback;
 
-	private Long createdBy;
+private String assignmentLink;
 
-	private Timestamp creationDate;
 
-	private Long lastModifiedBy;
+private Double timeSpentMins;
 
-	private Timestamp lastModifiedDate;
 
-	private Boolean isActive;
+private String comment;
 
-	private String constraint;
 
-	@OneToOne
-	private UserGoal userGoal;
+private String feedback;
 
-	@ManyToOne
-	private AssignmentQuality assignmentQuality;
 
-	@OneToOne
-	private UserGoalEvaluation userGoalEvaluation;
+private Long createdBy;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
+private Timestamp creationDate;
 
-	public void setClaimedCredits(Double claimedCredits) {
-		this.claimedCredits = claimedCredits;
-	}
 
-	public void setChaptersCompleted(String chaptersCompleted) {
-		this.chaptersCompleted = chaptersCompleted;
-	}
+private Long lastModifiedBy;
 
-	public void setAssignmentLink(String assignmentLink) {
-		this.assignmentLink = assignmentLink;
-	}
 
-	public void setTimeSpentMins(Double timeSpentMins) {
-		this.timeSpentMins = timeSpentMins;
-	}
+private Timestamp lastModifiedDate;
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
 
-	public void setFeedback(String feedback) {
-		this.feedback = feedback;
-	}
+private Boolean isActive;
 
-	public void setCreatedBy(Long createdBy) {
-		this.createdBy = createdBy;
-	}
+@OneToOne
+@JoinColumn(name="user_goal_id")
+private UserGoal userGoal;
 
-	public void setCreationDate(Timestamp creationDate) {
-		this.creationDate = creationDate;
-	}
+@ManyToOne
+@JoinColumn(name="assignment_quality_id")
+private AssignmentQuality assignmentQuality;
 
-	public void setLastModifiedBy(Long lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
-	}
+@OneToOne(mappedBy="userGoalClaim")
+@JsonIgnore
+private UserGoalEvaluation userGoalEvaluation;
+public void setId(Long id){
+this.id=id;
+}
 
-	public void setLastModifiedDate(Timestamp lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
+public void setUuid(UUID uuid){
+this.uuid=uuid;
+}
 
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
-	}
+public void setClaimedCredits(Double claimedCredits){
+this.claimedCredits=claimedCredits;
+}
 
-	public void setConstraint(String constraint) {
-		this.constraint = constraint;
-	}
+public void setChaptersCompleted(String chaptersCompleted){
+this.chaptersCompleted=chaptersCompleted;
+}
 
-	public void setUserGoal(UserGoal userGoal) {
-		this.userGoal = userGoal;
-	}
+public void setAssignmentLink(String assignmentLink){
+this.assignmentLink=assignmentLink;
+}
 
-	public void setAssignmentQuality(AssignmentQuality assignmentQuality) {
-		this.assignmentQuality = assignmentQuality;
-	}
+public void setTimeSpentMins(Double timeSpentMins){
+this.timeSpentMins=timeSpentMins;
+}
 
-	public void setUserGoalEvaluation(UserGoalEvaluation userGoalEvaluation) {
-		this.userGoalEvaluation = userGoalEvaluation;
-	}
+public void setComment(String comment){
+this.comment=comment;
+}
 
-	public Long getId() {
-		return id;
-	}
+public void setFeedback(String feedback){
+this.feedback=feedback;
+}
 
-	public UUID getUuid() {
-		return uuid;
-	}
+public void setCreatedBy(Long createdBy){
+this.createdBy=createdBy;
+}
 
-	public Double getClaimedCredits() {
-		return claimedCredits;
-	}
+public void setCreationDate(Timestamp creationDate){
+this.creationDate=creationDate;
+}
 
-	public String getChaptersCompleted() {
-		return chaptersCompleted;
-	}
+public void setLastModifiedBy(Long lastModifiedBy){
+this.lastModifiedBy=lastModifiedBy;
+}
 
-	public String getAssignmentLink() {
-		return assignmentLink;
-	}
+public void setLastModifiedDate(Timestamp lastModifiedDate){
+this.lastModifiedDate=lastModifiedDate;
+}
 
-	public Double getTimeSpentMins() {
-		return timeSpentMins;
-	}
+public void setIsActive(Boolean isActive){
+this.isActive=isActive;
+}
 
-	public String getComment() {
-		return comment;
-	}
+public void setUserGoal(UserGoal userGoal){
+this.userGoal=userGoal;
+}
 
-	public String getFeedback() {
-		return feedback;
-	}
+public void setAssignmentQuality(AssignmentQuality assignmentQuality){
+this.assignmentQuality=assignmentQuality;
+}
 
-	public Long getCreatedBy() {
-		return createdBy;
-	}
+public void setUserGoalEvaluation(UserGoalEvaluation userGoalEvaluation){
+this.userGoalEvaluation=userGoalEvaluation;
+}
+public Long getId(){
+return id;
+}
 
-	public Timestamp getCreationDate() {
-		return creationDate;
-	}
+public UUID getUuid(){
+return uuid;
+}
 
-	public Long getLastModifiedBy() {
-		return lastModifiedBy;
-	}
+public Double getClaimedCredits(){
+return claimedCredits;
+}
 
-	public Timestamp getLastModifiedDate() {
-		return lastModifiedDate;
-	}
+public String getChaptersCompleted(){
+return chaptersCompleted;
+}
 
-	public Boolean getIsActive() {
-		return isActive;
-	}
+public String getAssignmentLink(){
+return assignmentLink;
+}
 
-	public String getConstraint() {
-		return constraint;
-	}
+public Double getTimeSpentMins(){
+return timeSpentMins;
+}
 
-	public UserGoal getUserGoal() {
-		return userGoal;
-	}
+public String getComment(){
+return comment;
+}
 
-	public AssignmentQuality getAssignmentQuality() {
-		return assignmentQuality;
-	}
+public String getFeedback(){
+return feedback;
+}
 
-	public UserGoalEvaluation getUserGoalEvaluation() {
-		return userGoalEvaluation;
-	}
+public Long getCreatedBy(){
+return createdBy;
+}
+
+public Timestamp getCreationDate(){
+return creationDate;
+}
+
+public Long getLastModifiedBy(){
+return lastModifiedBy;
+}
+
+public Timestamp getLastModifiedDate(){
+return lastModifiedDate;
+}
+
+public Boolean getIsActive(){
+return isActive;
+}
+
+public UserGoal getUserGoal(){
+return userGoal;
+}
+
+public AssignmentQuality getAssignmentQuality(){
+return assignmentQuality;
+}
+
+public UserGoalEvaluation getUserGoalEvaluation(){
+return userGoalEvaluation;
+}
 }

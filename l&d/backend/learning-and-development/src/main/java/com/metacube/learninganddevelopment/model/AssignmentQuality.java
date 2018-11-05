@@ -1,95 +1,104 @@
 package com.metacube.learninganddevelopment.model;
-
-import javax.persistence.Id;
-
-import com.metacube.learninganddevelopment.model.UserGoalClaim;
-
-import java.sql.Timestamp;
-
-import javax.persistence.GeneratedValue;
-
 import javax.persistence.GenerationType;
-
-import java.util.UUID;
-
-import java.util.List;
 
 import javax.persistence.OneToMany;
 
+import java.sql.Timestamp;
+
+import java.util.List;
+
+import javax.persistence.GeneratedValue;
+
+import java.util.UUID;
+
+import javax.persistence.JoinColumn;
+
+import com.metacube.learninganddevelopment.model.UserGoalClaim;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.Id;
+
 import javax.persistence.Entity;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
-public class AssignmentQuality {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class AssignmentQuality{
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+private Long id;
 
-	private UUID uuid;
 
-	private String quality;
+private UUID uuid;
 
-	private Long lastModifiedBy;
 
-	private Timestamp lastModifiedDate;
+private String quality;
 
-	private Boolean isActive;
 
-	@OneToMany
-	private List<UserGoalClaim> userGoalClaimList;
+private Long lastModifiedBy;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
+private Timestamp lastModifiedDate;
 
-	public void setQuality(String quality) {
-		this.quality = quality;
-	}
 
-	public void setLastModifiedBy(Long lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
-	}
+private Boolean isActive;
 
-	public void setLastModifiedDate(Timestamp lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
+@OneToMany
+@JoinColumn(name="assignment_quality_id")
+@JsonIgnore
+private List<UserGoalClaim> userGoalClaimList;
+public void setId(Long id){
+this.id=id;
+}
 
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
-	}
+public void setUuid(UUID uuid){
+this.uuid=uuid;
+}
 
-	public void setUserGoalClaimList(List<UserGoalClaim> userGoalClaimList) {
-		this.userGoalClaimList = userGoalClaimList;
-	}
+public void setQuality(String quality){
+this.quality=quality;
+}
 
-	public Long getId() {
-		return id;
-	}
+public void setLastModifiedBy(Long lastModifiedBy){
+this.lastModifiedBy=lastModifiedBy;
+}
 
-	public UUID getUuid() {
-		return uuid;
-	}
+public void setLastModifiedDate(Timestamp lastModifiedDate){
+this.lastModifiedDate=lastModifiedDate;
+}
 
-	public String getQuality() {
-		return quality;
-	}
+public void setIsActive(Boolean isActive){
+this.isActive=isActive;
+}
 
-	public Long getLastModifiedBy() {
-		return lastModifiedBy;
-	}
+public void setUserGoalClaimList(List<UserGoalClaim> userGoalClaimList){
+this.userGoalClaimList=userGoalClaimList;
+}
+public Long getId(){
+return id;
+}
 
-	public Timestamp getLastModifiedDate() {
-		return lastModifiedDate;
-	}
+public UUID getUuid(){
+return uuid;
+}
 
-	public Boolean getIsActive() {
-		return isActive;
-	}
+public String getQuality(){
+return quality;
+}
 
-	public List<UserGoalClaim> getUserGoalClaimList() {
-		return userGoalClaimList;
-	}
+public Long getLastModifiedBy(){
+return lastModifiedBy;
+}
+
+public Timestamp getLastModifiedDate(){
+return lastModifiedDate;
+}
+
+public Boolean getIsActive(){
+return isActive;
+}
+
+public List<UserGoalClaim> getUserGoalClaimList(){
+return userGoalClaimList;
+}
 }

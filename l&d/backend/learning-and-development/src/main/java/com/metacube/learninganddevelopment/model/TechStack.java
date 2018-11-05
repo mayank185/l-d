@@ -1,155 +1,170 @@
 package com.metacube.learninganddevelopment.model;
+import javax.persistence.GenerationType;
 
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import java.sql.Timestamp;
 
-import javax.persistence.GeneratedValue;
+import java.util.List;
 
-import javax.persistence.GenerationType;
+import javax.persistence.GeneratedValue;
 
 import java.util.UUID;
 
 import com.metacube.learninganddevelopment.model.Goal;
 
-import java.util.List;
+import javax.persistence.JoinColumn;
 
-import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.Id;
 
 import javax.persistence.Entity;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
-public class TechStack {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class TechStack{
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+private Long id;
 
-	private UUID uuid;
 
-	private Long orgId;
+private UUID uuid;
 
-	private String name;
 
-	private String description;
+private Long orgId;
 
-	private Long ownerId;
 
-	private String status;
+private String name;
 
-	private Long createdBy;
 
-	private Timestamp createdDate;
+private String description;
 
-	private Long lastModifiedBy;
 
-	private Timestamp lastModifiedDate;
+private Long ownerId;
 
-	private Boolean isActive;
 
-	@OneToMany
-	private List<Goal> goalList;
+private String status;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
+private Long createdBy;
 
-	public void setOrgId(Long orgId) {
-		this.orgId = orgId;
-	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
+private Timestamp createdDate;
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
-	public void setOwnerId(Long ownerId) {
-		this.ownerId = ownerId;
-	}
+private Long lastModifiedBy;
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
 
-	public void setCreatedBy(Long createdBy) {
-		this.createdBy = createdBy;
-	}
+private Timestamp lastModifiedDate;
 
-	public void setCreatedDate(Timestamp createdDate) {
-		this.createdDate = createdDate;
-	}
 
-	public void setLastModifiedBy(Long lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
-	}
+private Boolean isActive;
 
-	public void setLastModifiedDate(Timestamp lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
+@OneToMany
+@JoinColumn(name="tech_stack_id")
+@JsonIgnore
+private List<Goal> goalList;
+public void setId(Long id){
+this.id=id;
+}
 
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
-	}
+public void setUuid(UUID uuid){
+this.uuid=uuid;
+}
 
-	public void setGoalList(List<Goal> goalList) {
-		this.goalList = goalList;
-	}
+public void setOrgId(Long orgId){
+this.orgId=orgId;
+}
 
-	public Long getId() {
-		return id;
-	}
+public void setName(String name){
+this.name=name;
+}
 
-	public UUID getUuid() {
-		return uuid;
-	}
+public void setDescription(String description){
+this.description=description;
+}
 
-	public Long getOrgId() {
-		return orgId;
-	}
+public void setOwnerId(Long ownerId){
+this.ownerId=ownerId;
+}
 
-	public String getName() {
-		return name;
-	}
+public void setStatus(String status){
+this.status=status;
+}
 
-	public String getDescription() {
-		return description;
-	}
+public void setCreatedBy(Long createdBy){
+this.createdBy=createdBy;
+}
 
-	public Long getOwnerId() {
-		return ownerId;
-	}
+public void setCreatedDate(Timestamp createdDate){
+this.createdDate=createdDate;
+}
 
-	public String getStatus() {
-		return status;
-	}
+public void setLastModifiedBy(Long lastModifiedBy){
+this.lastModifiedBy=lastModifiedBy;
+}
 
-	public Long getCreatedBy() {
-		return createdBy;
-	}
+public void setLastModifiedDate(Timestamp lastModifiedDate){
+this.lastModifiedDate=lastModifiedDate;
+}
 
-	public Timestamp getCreatedDate() {
-		return createdDate;
-	}
+public void setIsActive(Boolean isActive){
+this.isActive=isActive;
+}
 
-	public Long getLastModifiedBy() {
-		return lastModifiedBy;
-	}
+public void setGoalList(List<Goal> goalList){
+this.goalList=goalList;
+}
+public Long getId(){
+return id;
+}
 
-	public Timestamp getLastModifiedDate() {
-		return lastModifiedDate;
-	}
+public UUID getUuid(){
+return uuid;
+}
 
-	public Boolean getIsActive() {
-		return isActive;
-	}
+public Long getOrgId(){
+return orgId;
+}
 
-	public List<Goal> getGoalList() {
-		return goalList;
-	}
+public String getName(){
+return name;
+}
+
+public String getDescription(){
+return description;
+}
+
+public Long getOwnerId(){
+return ownerId;
+}
+
+public String getStatus(){
+return status;
+}
+
+public Long getCreatedBy(){
+return createdBy;
+}
+
+public Timestamp getCreatedDate(){
+return createdDate;
+}
+
+public Long getLastModifiedBy(){
+return lastModifiedBy;
+}
+
+public Timestamp getLastModifiedDate(){
+return lastModifiedDate;
+}
+
+public Boolean getIsActive(){
+return isActive;
+}
+
+public List<Goal> getGoalList(){
+return goalList;
+}
 }

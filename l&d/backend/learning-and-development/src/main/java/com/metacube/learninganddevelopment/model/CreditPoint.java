@@ -1,95 +1,104 @@
 package com.metacube.learninganddevelopment.model;
+import javax.persistence.GenerationType;
 
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import java.sql.Timestamp;
 
-import javax.persistence.GeneratedValue;
+import java.util.List;
 
-import javax.persistence.GenerationType;
+import javax.persistence.GeneratedValue;
 
 import java.util.UUID;
 
 import com.metacube.learninganddevelopment.model.Goal;
 
-import java.util.List;
+import javax.persistence.JoinColumn;
 
-import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.Id;
 
 import javax.persistence.Entity;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
-public class CreditPoint {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class CreditPoint{
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+private Long id;
 
-	private UUID uuid;
 
-	private Float points;
+private UUID uuid;
 
-	private Long lastModifiedBy;
 
-	private Timestamp lastModifiedDate;
+private Float points;
 
-	private Boolean isActive;
 
-	@OneToMany
-	private List<Goal> goalList;
+private Long lastModifiedBy;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
+private Timestamp lastModifiedDate;
 
-	public void setPoints(Float points) {
-		this.points = points;
-	}
 
-	public void setLastModifiedBy(Long lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
-	}
+private Boolean isActive;
 
-	public void setLastModifiedDate(Timestamp lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
+@OneToMany
+@JoinColumn(name="credit_point_id")
+@JsonIgnore
+private List<Goal> goalList;
+public void setId(Long id){
+this.id=id;
+}
 
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
-	}
+public void setUuid(UUID uuid){
+this.uuid=uuid;
+}
 
-	public void setGoalList(List<Goal> goalList) {
-		this.goalList = goalList;
-	}
+public void setPoints(Float points){
+this.points=points;
+}
 
-	public Long getId() {
-		return id;
-	}
+public void setLastModifiedBy(Long lastModifiedBy){
+this.lastModifiedBy=lastModifiedBy;
+}
 
-	public UUID getUuid() {
-		return uuid;
-	}
+public void setLastModifiedDate(Timestamp lastModifiedDate){
+this.lastModifiedDate=lastModifiedDate;
+}
 
-	public Float getPoints() {
-		return points;
-	}
+public void setIsActive(Boolean isActive){
+this.isActive=isActive;
+}
 
-	public Long getLastModifiedBy() {
-		return lastModifiedBy;
-	}
+public void setGoalList(List<Goal> goalList){
+this.goalList=goalList;
+}
+public Long getId(){
+return id;
+}
 
-	public Timestamp getLastModifiedDate() {
-		return lastModifiedDate;
-	}
+public UUID getUuid(){
+return uuid;
+}
 
-	public Boolean getIsActive() {
-		return isActive;
-	}
+public Float getPoints(){
+return points;
+}
 
-	public List<Goal> getGoalList() {
-		return goalList;
-	}
+public Long getLastModifiedBy(){
+return lastModifiedBy;
+}
+
+public Timestamp getLastModifiedDate(){
+return lastModifiedDate;
+}
+
+public Boolean getIsActive(){
+return isActive;
+}
+
+public List<Goal> getGoalList(){
+return goalList;
+}
 }

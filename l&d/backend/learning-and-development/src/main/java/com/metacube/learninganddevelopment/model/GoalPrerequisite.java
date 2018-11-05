@@ -1,86 +1,79 @@
 package com.metacube.learninganddevelopment.model;
-
 import javax.persistence.GenerationType;
 
 import java.sql.Timestamp;
 
-import javax.persistence.Id;
-
 import javax.persistence.GeneratedValue;
 
+import javax.persistence.Id;
+
 import javax.persistence.Entity;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
-public class GoalPrerequisite {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class GoalPrerequisite{
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+private Long id;
 
-	private Long createdBy;
 
-	private Timestamp createdDate;
+private Long createdBy;
 
-	private Long lastModifiedBy;
 
-	private Timestamp lastModifiedDate;
+private Timestamp createdDate;
 
-	private Boolean isActive;
 
-	private String unique;
+private Long lastModifiedBy;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	public void setCreatedBy(Long createdBy) {
-		this.createdBy = createdBy;
-	}
+private Timestamp lastModifiedDate;
 
-	public void setCreatedDate(Timestamp createdDate) {
-		this.createdDate = createdDate;
-	}
 
-	public void setLastModifiedBy(Long lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
-	}
+private Boolean isActive;
+public void setId(Long id){
+this.id=id;
+}
 
-	public void setLastModifiedDate(Timestamp lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
+public void setCreatedBy(Long createdBy){
+this.createdBy=createdBy;
+}
 
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
-	}
+public void setCreatedDate(Timestamp createdDate){
+this.createdDate=createdDate;
+}
 
-	public void setUnique(String unique) {
-		this.unique = unique;
-	}
+public void setLastModifiedBy(Long lastModifiedBy){
+this.lastModifiedBy=lastModifiedBy;
+}
 
-	public Long getId() {
-		return id;
-	}
+public void setLastModifiedDate(Timestamp lastModifiedDate){
+this.lastModifiedDate=lastModifiedDate;
+}
 
-	public Long getCreatedBy() {
-		return createdBy;
-	}
+public void setIsActive(Boolean isActive){
+this.isActive=isActive;
+}
+public Long getId(){
+return id;
+}
 
-	public Timestamp getCreatedDate() {
-		return createdDate;
-	}
+public Long getCreatedBy(){
+return createdBy;
+}
 
-	public Long getLastModifiedBy() {
-		return lastModifiedBy;
-	}
+public Timestamp getCreatedDate(){
+return createdDate;
+}
 
-	public Timestamp getLastModifiedDate() {
-		return lastModifiedDate;
-	}
+public Long getLastModifiedBy(){
+return lastModifiedBy;
+}
 
-	public Boolean getIsActive() {
-		return isActive;
-	}
+public Timestamp getLastModifiedDate(){
+return lastModifiedDate;
+}
 
-	public String getUnique() {
-		return unique;
-	}
+public Boolean getIsActive(){
+return isActive;
+}
 }

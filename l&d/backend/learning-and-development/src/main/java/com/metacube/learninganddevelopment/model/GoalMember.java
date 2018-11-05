@@ -1,106 +1,101 @@
 package com.metacube.learninganddevelopment.model;
-
 import javax.persistence.GenerationType;
 
 import java.sql.Timestamp;
 
-import javax.persistence.Id;
-
 import javax.persistence.GeneratedValue;
 
+import javax.persistence.Id;
+
 import javax.persistence.Entity;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
-public class GoalMember {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class GoalMember{
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+private Long id;
 
-	private Long userId;
 
-	private String role;
+private Long userId;
 
-	private Long createdBy;
 
-	private Long lastModifiedBy;
+private String role;
 
-	private Timestamp createdDate;
 
-	private Timestamp lastModifiedDate;
+private Long createdBy;
 
-	private Boolean isActive;
 
-	private String unique;
+private Long lastModifiedBy;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+private Timestamp createdDate;
 
-	public void setRole(String role) {
-		this.role = role;
-	}
 
-	public void setCreatedBy(Long createdBy) {
-		this.createdBy = createdBy;
-	}
+private Timestamp lastModifiedDate;
 
-	public void setLastModifiedBy(Long lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
-	}
 
-	public void setCreatedDate(Timestamp createdDate) {
-		this.createdDate = createdDate;
-	}
+private Boolean isActive;
+public void setId(Long id){
+this.id=id;
+}
 
-	public void setLastModifiedDate(Timestamp lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
+public void setUserId(Long userId){
+this.userId=userId;
+}
 
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
-	}
+public void setRole(String role){
+this.role=role;
+}
 
-	public void setUnique(String unique) {
-		this.unique = unique;
-	}
+public void setCreatedBy(Long createdBy){
+this.createdBy=createdBy;
+}
 
-	public Long getId() {
-		return id;
-	}
+public void setLastModifiedBy(Long lastModifiedBy){
+this.lastModifiedBy=lastModifiedBy;
+}
 
-	public Long getUserId() {
-		return userId;
-	}
+public void setCreatedDate(Timestamp createdDate){
+this.createdDate=createdDate;
+}
 
-	public String getRole() {
-		return role;
-	}
+public void setLastModifiedDate(Timestamp lastModifiedDate){
+this.lastModifiedDate=lastModifiedDate;
+}
 
-	public Long getCreatedBy() {
-		return createdBy;
-	}
+public void setIsActive(Boolean isActive){
+this.isActive=isActive;
+}
+public Long getId(){
+return id;
+}
 
-	public Long getLastModifiedBy() {
-		return lastModifiedBy;
-	}
+public Long getUserId(){
+return userId;
+}
 
-	public Timestamp getCreatedDate() {
-		return createdDate;
-	}
+public String getRole(){
+return role;
+}
 
-	public Timestamp getLastModifiedDate() {
-		return lastModifiedDate;
-	}
+public Long getCreatedBy(){
+return createdBy;
+}
 
-	public Boolean getIsActive() {
-		return isActive;
-	}
+public Long getLastModifiedBy(){
+return lastModifiedBy;
+}
 
-	public String getUnique() {
-		return unique;
-	}
+public Timestamp getCreatedDate(){
+return createdDate;
+}
+
+public Timestamp getLastModifiedDate(){
+return lastModifiedDate;
+}
+
+public Boolean getIsActive(){
+return isActive;
+}
 }

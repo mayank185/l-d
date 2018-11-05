@@ -1,13 +1,24 @@
 package com.metacube.learninganddevelopment.model;
 
+import javax.persistence.GenerationType;
+
+import javax.persistence.ManyToMany;
+
 import java.sql.Timestamp;
 
-import javax.persistence.Entity;
+import java.util.List;
+
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Id;
 
+import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class OrgUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,10 +37,6 @@ public class OrgUser {
 	private Timestamp lastModifiedDate;
 
 	private Boolean isActive;
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public void setName(String name) {
 		this.name = name;
@@ -90,4 +97,5 @@ public class OrgUser {
 	public Boolean getIsActive() {
 		return isActive;
 	}
+
 }
