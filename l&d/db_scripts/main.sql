@@ -69,6 +69,7 @@ id BIGSERIAL NOT NULL PRIMARY KEY,
 CREATE TYPE goal_status AS ENUM
     ('Ready','In Review', 'Draft', 'In Active');
 
+
 /* goal table */
 CREATE TABLE goal
 (
@@ -79,20 +80,20 @@ CREATE TABLE goal
    goal_id VARCHAR(255) UNIQUE NOT NULL,
    version VARCHAR(50) NOT NULL,
    name VARCHAR(50) UNIQUE NOT NULL,
-   description VARCHAR(255) NOT NULL,
+   description VARCHAR(255) ,
    status goal_status NOT NULL,
    level_id BIGINT NOT NULL,
-   is_deleted boolean NOT NULL,
-   credit_point_id BIGINT NOT NULL,
-   tags VARCHAR(255) NOT NULL,
-   goal_classification_id BIGINT NOT NULL,
-   activation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-   inactivation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-   other_prerequisite VARCHAR(255) NOT NULL,
-   esimated_effort FLOAT NOT NULL,
+   is_deleted boolean NOT NULL DEFAULT FALSE,
+   credit_point_id BIGINT,
+   tags VARCHAR(255),
+   goal_classification_id BIGINT,
+   activation_date TIMESTAMP ,
+   inactivation_date TIMESTAMP ,
+   other_prerequisite VARCHAR(255),
+   esimated_effort FLOAT ,
    created_by bigint NOT NULL,				--FK WRS--
    created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-   last_modified_by bigint NOT NULL,			--FK WRS--
+   last_modified_by bigint,			--FK WRS--
    last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
    is_active boolean DEFAULT FALSE NOT NULL,
    course_cost double precision DEFAULT NULL,
@@ -102,6 +103,7 @@ CREATE TABLE goal
    FOREIGN KEY (credit_point_id) REFERENCES credit_point(id) /*@ManyToOne*/,
    FOREIGN KEY (goal_classification_id) REFERENCES goal_classification(id) /*@ManyToOne*/
 );
+
 
 /** Goal role enum **/
 CREATE TYPE goal_role AS ENUM ('COORDINATOR','EVALUATOR');
