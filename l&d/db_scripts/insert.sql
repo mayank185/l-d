@@ -1,4 +1,4 @@
--- MASTER TABLES
+﻿-- MASTER TABLES
 
 INSERT INTO goal_level(level, last_modified_by) VALUES ('Beginner', 1);
 INSERT INTO goal_level(level, last_modified_by) VALUES ('Intermediate', 1);
@@ -63,13 +63,13 @@ INSERT INTO tech_stack(org_id,name,description,owner_id,status,created_by,last_m
 
 --Insert query for Goal table--
 
-INSERT INTO goal(org_id  , tech_stack_id , goal_id , version , name , description , status , level_id , is_deleted , credit_point_id , tags , goal_classification_id , other_prerequisite , esimated_effort, created_by, last_modified_by)
+INSERT INTO goal(org_id  , tech_stack_id , goal_id , version , name , description , status , level_id , is_deleted , credit_point_id , tags , goal_classification_id , other_prerequisite , esimated_effort, created_by, last_modified_by) 
 VALUES(1 , 1 , 'JAVA.Basics.Intermediate.1' , 1 , 'Basics' , 'Basics of java' , 'Ready' , 1 , false , 1 , 'java' ,  1 ,'java java java' , 10.2, 1, 1);
 
-INSERT INTO goal(org_id  , tech_stack_id , goal_id , version , name , description , status , level_id , is_deleted , credit_point_id , tags , goal_classification_id , other_prerequisite , esimated_effort, created_by, last_modified_by )
+INSERT INTO goal(org_id  , tech_stack_id , goal_id , version , name , description , status , level_id , is_deleted , credit_point_id , tags , goal_classification_id , other_prerequisite , esimated_effort, created_by, last_modified_by ) 
 VALUES(1 , 1 , 'JAVA.Advanced.Advanced.1' , 1 ,'Advanced' , 'Advanced Java' , 'In Review' , 1 , false , 1 , 'Advanced' ,  1 ,'java java java' , 12, 1, 1  );
 
-INSERT INTO goal(org_id  , tech_stack_id , goal_id , version , name , description , status , level_id , is_deleted , credit_point_id , tags , goal_classification_id , other_prerequisite , esimated_effort, created_by, last_modified_by )
+INSERT INTO goal(org_id  , tech_stack_id , goal_id , version , name , description , status , level_id , is_deleted , credit_point_id , tags , goal_classification_id , other_prerequisite , esimated_effort, created_by, last_modified_by ) 
 VALUES(1 , 2 , 'HTML.html.Beginner.1' , 1 , 'html' , 'Html tutorials' , 'In Review' , 1 , false , 1 , 'html',  1 , 'java java java' , 12, 1, 1  );
 
 --Insert query for Goal member--
@@ -87,13 +87,13 @@ INSERT INTO goal_prerequisite(goal_id , prerequisite_goal_id , created_by , last
 
 --Insert query for Goal Chapter--
 
-INSERT INTO goal_chapter(goal_id , name , credits , content_link , chapter_sequence , created_by , last_modified_by) VALUES
+INSERT INTO goal_chapter(goal_id , name , credits , content_link , chapter_sequence , created_by , last_modified_by) VALUES 
 (1 , 'Basics Of JAVA' , 10 , '{"link": "https://www.tutorialspoint.com/java/java_basic_syntax.htm"}' , 1 , 1 , 1);
 
-INSERT INTO goal_chapter(goal_id , name , credits , content_link , chapter_sequence , created_by , last_modified_by) VALUES
+INSERT INTO goal_chapter(goal_id , name , credits , content_link , chapter_sequence , created_by , last_modified_by) VALUES 
 (1 , 'Datatypes in JAVA' , 5 , '{"link": "https://www.tutorialspoint.com/java/java_basic_datatypes.htm"}' , 2 , 1 , 2);
 
-INSERT INTO goal_chapter(goal_id , name , credits , content_link , chapter_sequence , created_by , last_modified_by) VALUES
+INSERT INTO goal_chapter(goal_id , name , credits , content_link , chapter_sequence , created_by , last_modified_by) VALUES 
 (3 , 'Basic HTML' , 5 , '{"link": "https://www.w3schools.com/html/"}' , 1 , 2 , 2);
 
 --Insert query for User Goal--
@@ -106,7 +106,4 @@ INSERT INTO user_goal(goal_id , user_id , quarter_id , status , is_deleted , app
 
 INSERT INTO user_goal(goal_id , user_id , quarter_id , status , is_deleted , approved_by , created_by , last_modified_by) VALUES
 (2 , 4 , 2 , 'Rejected' , true , 2 , 2 , 2);
-
-
-
 

@@ -1,9 +1,26 @@
--- createuser -U postgres -s developer
+﻿-- createuser -U postgres -s developer
 -- createdb -U developer learning_and_development
 -- psql -U developer -f psql.sql learning_and_development
 
-DROP TABLE IF EXISTS credit_point;
+DROP TABLE IF EXISTS user_goal_evaluation;
+DROP TABLE IF EXISTS user_goal_claim;
+DROP TABLE IF EXISTS goal_prerequisite;
+DROP TABLE IF EXISTS goal_chapter;
+DROP TABLE IF EXISTS goal_member;
+DROP TABLE IF EXISTS user_goal;
+DROP TABLE IF EXISTS goal;
+DROP TABLE IF EXISTS tech_stack;
+DROP TABLE IF EXISTS user_role;
+
+DROP TYPE IF EXISTS role_enum ;
+DROP TYPE IF EXISTS tech_stack_status;
+DROP TYPE IF EXISTS goal_role ;
+DROP TYPE IF EXISTS goal_status ;
+DROP TYPE IF EXISTS user_goal_status_enum ;
+DROP TABLE IF EXISTS org_user;
+
 DROP TABLE IF EXISTS assignment_quality;
+DROP TABLE IF EXISTS credit_point;
 DROP TABLE IF EXISTS goal_quarter;
 DROP TABLE IF EXISTS goal_classification;
 DROP TABLE IF EXISTS goal_level;
