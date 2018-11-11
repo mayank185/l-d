@@ -1,8 +1,7 @@
-package com.metacube.learninganddevelopment;
+package com.metacube.learninganddevelopment.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 public class LearningAndDevelopmentApplication {

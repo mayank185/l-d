@@ -1,4 +1,4 @@
-package com.metacube.learninganddevelopment;
+package com.metacube.learninganddevelopment.config;
 
 import java.util.Optional;
 
