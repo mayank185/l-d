@@ -66,8 +66,7 @@ id BIGSERIAL NOT NULL PRIMARY KEY,
 );
 
 /* goal status enum */
-CREATE TYPE goal_status AS ENUM
-    ('Ready','In Review', 'Draft', 'In Active');
+CREATE TYPE goal_status AS ENUM ('Ready','InReview', 'Draft', 'Active');
 
 
 /* goal table */
@@ -222,3 +221,4 @@ CREATE TABLE user_goal_evaluation(
 	is_active boolean NOT NULL,
 	 FOREIGN KEY (user_goal_claimed_id) REFERENCES user_goal_claim(id) /*@OneToOne*/
 );
+

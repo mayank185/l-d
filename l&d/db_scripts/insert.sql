@@ -1,34 +1,34 @@
-﻿-- MASTER TABLES
+-- MASTER TABLES
 
-INSERT INTO goal_level(level, last_modified_by) VALUES ('Beginner', 1);
-INSERT INTO goal_level(level, last_modified_by) VALUES ('Intermediate', 1);
-INSERT INTO goal_level(level, last_modified_by) VALUES ('Advanced', 1);
-INSERT INTO goal_level(level, last_modified_by) VALUES ('Expert', 1);
+INSERT INTO goal_level(level, last_modified_by, created_by) VALUES ('Beginner', 1, 1);
+INSERT INTO goal_level(level, last_modified_by, created_by) VALUES ('Intermediate', 1, 1);
+INSERT INTO goal_level(level, last_modified_by, created_by) VALUES ('Advanced', 1, 1);
+INSERT INTO goal_level(level, last_modified_by, created_by) VALUES ('Expert', 1, 1);
 
-INSERT INTO goal_classification(classification, last_modified_by) VALUES ('Conceptual', 1);
-INSERT INTO goal_classification(classification, last_modified_by) VALUES ('Platform', 1);
-INSERT INTO goal_classification(classification, last_modified_by) VALUES ('Certification', 1);
-INSERT INTO goal_classification(classification, last_modified_by) VALUES ('Inhouse', 1);
-INSERT INTO goal_classification(classification, last_modified_by) VALUES ('Online Course', 1);
+INSERT INTO goal_classification(classification, last_modified_by, created_by) VALUES ('Conceptual', 1, 1);
+INSERT INTO goal_classification(classification, last_modified_by, created_by) VALUES ('Platform', 1, 1);
+INSERT INTO goal_classification(classification, last_modified_by, created_by) VALUES ('Certification', 1, 1);
+INSERT INTO goal_classification(classification, last_modified_by, created_by) VALUES ('Inhouse', 1, 1);
+INSERT INTO goal_classification(classification, last_modified_by, created_by) VALUES ('Online Course', 1, 1);
 
-INSERT INTO goal_quarter(year, quarter, last_modified_by) VALUES (2018, 'Q1', 1);
-INSERT INTO goal_quarter(year, quarter, last_modified_by) VALUES (2018, 'Q2', 1);
-INSERT INTO goal_quarter(year, quarter, last_modified_by) VALUES (2018, 'Q3', 1);
-INSERT INTO goal_quarter(year, quarter, last_modified_by) VALUES (2018, 'Q4', 1);
-INSERT INTO goal_quarter(year, quarter, last_modified_by) VALUES (2017, 'Q1', 1);
-INSERT INTO goal_quarter(year, quarter, last_modified_by) VALUES (2017, 'Q2', 1);
-INSERT INTO goal_quarter(year, quarter, last_modified_by) VALUES (2017, 'Q3', 1);
-INSERT INTO goal_quarter(year, quarter, last_modified_by) VALUES (2017, 'Q4', 1);
+INSERT INTO goal_quarter(year, quarter, last_modified_by, created_by) VALUES (2018, 'Q1', 1, 1);
+INSERT INTO goal_quarter(year, quarter, last_modified_by, created_by) VALUES (2018, 'Q2', 1, 1);
+INSERT INTO goal_quarter(year, quarter, last_modified_by, created_by) VALUES (2018, 'Q3', 1, 1);
+INSERT INTO goal_quarter(year, quarter, last_modified_by, created_by) VALUES (2018, 'Q4', 1, 1);
+INSERT INTO goal_quarter(year, quarter, last_modified_by, created_by) VALUES (2017, 'Q1', 1, 1);
+INSERT INTO goal_quarter(year, quarter, last_modified_by, created_by) VALUES (2017, 'Q2', 1, 1);
+INSERT INTO goal_quarter(year, quarter, last_modified_by, created_by) VALUES (2017, 'Q3', 1, 1);
+INSERT INTO goal_quarter(year, quarter, last_modified_by, created_by) VALUES (2017, 'Q4', 1, 1);
 
 
-INSERT INTO credit_point(points, last_modified_by) VALUES (12.5, 1);
-INSERT INTO credit_point(points, last_modified_by) VALUES (25, 1);
-INSERT INTO credit_point(points, last_modified_by) VALUES (50, 1);
+INSERT INTO credit_point(points, last_modified_by, created_by) VALUES (12.5, 1, 1);
+INSERT INTO credit_point(points, last_modified_by, created_by) VALUES (25, 1, 1);
+INSERT INTO credit_point(points, last_modified_by, created_by) VALUES (50, 1, 1);
 
-INSERT INTO assignment_quality(quality, last_modified_by) VALUES ('Normal', 1);
-INSERT INTO assignment_quality(quality, last_modified_by) VALUES ('Not Challenging', 1);
-INSERT INTO assignment_quality(quality, last_modified_by) VALUES ('Not Applicable', 1);
-INSERT INTO assignment_quality(quality, last_modified_by) VALUES ('Challenging', 1);
+INSERT INTO assignment_quality(quality, last_modified_by, created_by) VALUES ('Normal', 1, 1);
+INSERT INTO assignment_quality(quality, last_modified_by, created_by) VALUES ('Not Challenging', 1, 1);
+INSERT INTO assignment_quality(quality, last_modified_by, created_by) VALUES ('Not Applicable', 1, 1);
+INSERT INTO assignment_quality(quality, last_modified_by, created_by) VALUES ('Challenging', 1, 1);
 
 
 
@@ -67,10 +67,10 @@ INSERT INTO goal(org_id  , tech_stack_id , goal_id , version , name , descriptio
 VALUES(1 , 1 , 'JAVA.Basics.Intermediate.1' , 1 , 'Basics' , 'Basics of java' , 'Ready' , 1 , false , 1 , 'java' ,  1 ,'java java java' , 10.2, 1, 1);
 
 INSERT INTO goal(org_id  , tech_stack_id , goal_id , version , name , description , status , level_id , is_deleted , credit_point_id , tags , goal_classification_id , other_prerequisite , esimated_effort, created_by, last_modified_by ) 
-VALUES(1 , 1 , 'JAVA.Advanced.Advanced.1' , 1 ,'Advanced' , 'Advanced Java' , 'In Review' , 1 , false , 1 , 'Advanced' ,  1 ,'java java java' , 12, 1, 1  );
+VALUES(1 , 1 , 'JAVA.Advanced.Advanced.1' , 1 ,'Advanced' , 'Advanced Java' , 'InReview' , 1 , false , 1 , 'Advanced' ,  1 ,'java java java' , 12, 1, 1  );
 
 INSERT INTO goal(org_id  , tech_stack_id , goal_id , version , name , description , status , level_id , is_deleted , credit_point_id , tags , goal_classification_id , other_prerequisite , esimated_effort, created_by, last_modified_by ) 
-VALUES(1 , 2 , 'HTML.html.Beginner.1' , 1 , 'html' , 'Html tutorials' , 'In Review' , 1 , false , 1 , 'html',  1 , 'java java java' , 12, 1, 1  );
+VALUES(1 , 2 , 'HTML.html.Beginner.1' , 1 , 'html' , 'Html tutorials' , 'InReview' , 1 , false , 1 , 'html',  1 , 'java java java' , 12, 1, 1  );
 
 --Insert query for Goal member--
 
@@ -106,4 +106,5 @@ INSERT INTO user_goal(goal_id , user_id , quarter_id , status , is_deleted , app
 
 INSERT INTO user_goal(goal_id , user_id , quarter_id , status , is_deleted , approved_by , created_by , last_modified_by) VALUES
 (2 , 4 , 2 , 'Rejected' , true , 2 , 2 , 2);
+
 
