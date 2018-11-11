@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -92,6 +94,22 @@ public class GoalLevelController {
 	@GetMapping("/goal-chapter/goal-user/{id}")
 	public UserGoal getGoalOfUserById(@PathVariable("id") Long id){
 		return userGoalRepository.getOne(id);
+	}
+	
+	@PostMapping("/tech-stack")
+	public TechStack saveStack(@RequestBody TechStack techStack){
+		return techStackRepository.save(techStack);
+		//return techStack;
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public TechStack deleteStack(@PathVariable("id") Long id){
+		TechStack techStack = null;
+		if (techStackRepository.existsById(id)){
+			techStack = techStackRepository.findById(id).get();
+			techStackRepository.deleteById(id);
+		}	
+		return techStack;
 	}
 	
 }

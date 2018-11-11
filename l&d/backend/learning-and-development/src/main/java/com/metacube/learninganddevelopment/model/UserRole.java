@@ -1,85 +1,55 @@
 package com.metacube.learninganddevelopment.model;
 
-import javax.persistence.Id;
-
 import javax.persistence.GenerationType;
 
 import javax.persistence.GeneratedValue;
 
-import java.sql.Timestamp;
+import javax.persistence.EnumType;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import com.metacube.learninganddevelopment.model.RoleEnum;
 
 import javax.persistence.Entity;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.Enumerated;
+
+import org.hibernate.annotations.Type;
+
+import javax.persistence.Id;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class UserRole {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-
-	private String role;
-
-	private Long createdBy;
-
-	private Long lastModifiedBy;
-
-	private Timestamp createdDate;
-
-	private Timestamp lastModifiedDate;
+public class UserRole extends Auditable<Long> {
 
 	private Boolean isActive;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-	public void setRole(String role) {
+	@Enumerated(EnumType.STRING)
+	@Type(type = "com.metacube.learninganddevelopment.model.SQLEnumType")
+	private RoleEnum role;
+
+	public void setRole(RoleEnum role) {
 		this.role = role;
 	}
 
-	public void setCreatedBy(Long createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public void setLastModifiedBy(Long lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
-	}
-
-	public void setCreatedDate(Timestamp createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public void setLastModifiedDate(Timestamp lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public String getRole() {
+	public RoleEnum getRole() {
 		return role;
 	}
 
-	public Long getCreatedBy() {
-		return createdBy;
-	}
-
-	public Long getLastModifiedBy() {
-		return lastModifiedBy;
-	}
-
-	public Timestamp getCreatedDate() {
-		return createdDate;
-	}
-
-	public Timestamp getLastModifiedDate() {
-		return lastModifiedDate;
+	public Long getId() {
+		return id;
 	}
 
 	public Boolean getIsActive() {

@@ -1,79 +1,66 @@
 package com.metacube.learninganddevelopment.model;
 
-import javax.persistence.GeneratedValue;
-
 import javax.persistence.GenerationType;
 
-import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
 
-import java.sql.Timestamp;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import com.metacube.learninganddevelopment.model.UserGoalClaim;
-
-import javax.persistence.JoinColumn;
+import javax.persistence.EnumType;
 
 import javax.persistence.OneToOne;
 
-import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.Entity;
+
+import com.metacube.learninganddevelopment.model.UserGoalClaim;
+
+import javax.persistence.Enumerated;
+
+import javax.persistence.JoinColumn;
+
+import org.hibernate.annotations.Type;
+
+import javax.persistence.Id;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class UserGoalEvaluation {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-
-	private Double approvedCredit;
+public class UserGoalEvaluation extends Auditable<Long> {
 
 	private String feedback;
 
 	private Long evaluatedBy;
 
-	private Long createdBy;
-
-	private Timestamp createdDate;
-
-	private Long lastModifiedBy;
-
-	private Timestamp lastModifiedDate;
-
 	private Boolean isActive;
+
+	private Double approvedCredit;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	@OneToOne
 	@JoinColumn(name = "user_goal_claimed_id")
+	@JsonIgnore
+	@Enumerated(EnumType.STRING)
+	@Type(type = "com.metacube.learninganddevelopment.model.SQLEnumType")
 	private UserGoalClaim userGoalClaim;
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public void setApprovedCredit(Double approvedCredit) {
-		this.approvedCredit = approvedCredit;
-	}
-
 	public void setFeedback(String feedback) {
 		this.feedback = feedback;
 	}
 
+	public void setApprovedCredit(Double approvedCredit) {
+		this.approvedCredit = approvedCredit;
+	}
+
 	public void setEvaluatedBy(Long evaluatedBy) {
 		this.evaluatedBy = evaluatedBy;
-	}
-
-	public void setCreatedBy(Long createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public void setCreatedDate(Timestamp createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public void setLastModifiedBy(Long lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
-	}
-
-	public void setLastModifiedDate(Timestamp lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
 	}
 
 	public void setIsActive(Boolean isActive) {
@@ -88,32 +75,16 @@ public class UserGoalEvaluation {
 		return id;
 	}
 
-	public Double getApprovedCredit() {
-		return approvedCredit;
-	}
-
 	public String getFeedback() {
 		return feedback;
 	}
 
+	public Double getApprovedCredit() {
+		return approvedCredit;
+	}
+
 	public Long getEvaluatedBy() {
 		return evaluatedBy;
-	}
-
-	public Long getCreatedBy() {
-		return createdBy;
-	}
-
-	public Timestamp getCreatedDate() {
-		return createdDate;
-	}
-
-	public Long getLastModifiedBy() {
-		return lastModifiedBy;
-	}
-
-	public Timestamp getLastModifiedDate() {
-		return lastModifiedDate;
 	}
 
 	public Boolean getIsActive() {

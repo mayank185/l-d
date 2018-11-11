@@ -1,146 +1,114 @@
 package com.metacube.learninganddevelopment.model;
 
-import javax.persistence.ManyToOne;
+import javax.persistence.GenerationType;
 
 import javax.persistence.GeneratedValue;
 
-import javax.persistence.GenerationType;
+import javax.persistence.EnumType;
 
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.sql.Timestamp;
+import javax.persistence.Entity;
 
 import com.metacube.learninganddevelopment.model.Goal;
 
+import javax.persistence.Enumerated;
+
 import javax.persistence.JoinColumn;
 
-import javax.persistence.Entity;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Type;
+
+import javax.persistence.Id;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class GoalChapter {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+public class GoalChapter extends Auditable<Long> {
 
 	private String name;
 
 	private Float credits;
 
-	private String contentLink;
+	private Boolean isActive;
 
-	private Integer chapterSequence;
+	private String contentLink;
 
 	private String additionalLink;
 
-	private Long createdBy;
+	private Integer chapterSequence;
 
-	private Timestamp createdDate;
-
-	private Long lastModifiedBy;
-
-	private Timestamp lastModifiedDate;
-
-	private Boolean isActive;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	@ManyToOne
 	@JoinColumn(name = "goal_id")
+	@Enumerated(EnumType.STRING)
+	@Type(type = "com.metacube.learninganddevelopment.model.SQLEnumType")
 	private Goal goal;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setContentLink(String contentLink) {
+		this.contentLink = contentLink;
 	}
 
 	public void setCredits(Float credits) {
 		this.credits = credits;
 	}
 
-	public void setContentLink(String contentLink) {
-		this.contentLink = contentLink;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setChapterSequence(Integer chapterSequence) {
-		this.chapterSequence = chapterSequence;
-	}
-
-	public void setAdditionalLink(String additionalLink) {
-		this.additionalLink = additionalLink;
-	}
-
-	public void setCreatedBy(Long createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public void setCreatedDate(Timestamp createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public void setLastModifiedBy(Long lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
-	}
-
-	public void setLastModifiedDate(Timestamp lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
-
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setGoal(Goal goal) {
 		this.goal = goal;
 	}
 
-	public Long getId() {
-		return id;
+	public void setAdditionalLink(String additionalLink) {
+		this.additionalLink = additionalLink;
 	}
 
-	public String getName() {
-		return name;
+	public void setChapterSequence(Integer chapterSequence) {
+		this.chapterSequence = chapterSequence;
 	}
 
-	public Float getCredits() {
-		return credits;
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 
 	public String getContentLink() {
 		return contentLink;
 	}
 
-	public Integer getChapterSequence() {
-		return chapterSequence;
+	public Float getCredits() {
+		return credits;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public Goal getGoal() {
+		return goal;
 	}
 
 	public String getAdditionalLink() {
 		return additionalLink;
 	}
 
-	public Long getCreatedBy() {
-		return createdBy;
-	}
-
-	public Timestamp getCreatedDate() {
-		return createdDate;
-	}
-
-	public Long getLastModifiedBy() {
-		return lastModifiedBy;
-	}
-
-	public Timestamp getLastModifiedDate() {
-		return lastModifiedDate;
+	public Integer getChapterSequence() {
+		return chapterSequence;
 	}
 
 	public Boolean getIsActive() {
 		return isActive;
-	}
-
-	public Goal getGoal() {
-		return goal;
 	}
 }

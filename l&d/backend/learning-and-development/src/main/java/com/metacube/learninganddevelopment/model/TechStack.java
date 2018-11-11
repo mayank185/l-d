@@ -1,76 +1,82 @@
 package com.metacube.learninganddevelopment.model;
 
-import javax.persistence.GeneratedValue;
-
 import javax.persistence.GenerationType;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.OneToMany;
-
-import javax.persistence.Id;
-
-import java.sql.Timestamp;
-
-import com.metacube.learninganddevelopment.model.Goal;
 
 import java.util.UUID;
 
-import javax.persistence.JoinColumn;
+import javax.persistence.GeneratedValue;
 
 import java.util.List;
 
-import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.EnumType;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.Entity;
+
+import com.metacube.learninganddevelopment.model.Goal;
+
+import javax.persistence.Enumerated;
+
+import javax.persistence.JoinColumn;
+
+import com.metacube.learninganddevelopment.model.TechStackStatus;
+
+import org.hibernate.annotations.Type;
+
+import javax.persistence.Id;
+
+import javax.persistence.OneToMany;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class TechStack {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-
-	private UUID uuid;
+public class TechStack extends Auditable<Long> {
 
 	private Long orgId;
 
 	private String name;
 
-	private String description;
-
 	private Long ownerId;
 
-	private String status;
-
-	private Long createdBy;
-
-	private Timestamp createdDate;
-
-	private Long lastModifiedBy;
-
-	private Timestamp lastModifiedDate;
-
 	private Boolean isActive;
+
+	private String description;
+
+	private UUID uuid = UUID.randomUUID();
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	@OneToMany
 	@JoinColumn(name = "tech_stack_id")
 	@JsonIgnore
 	private List<Goal> goalList;
 
-	public void setId(Long id) {
-		this.id = id;
+	@Enumerated(EnumType.STRING)
+	@Type(type = "com.metacube.learninganddevelopment.model.SQLEnumType")
+	private TechStackStatus status;
+
+	public void setStatus(TechStackStatus status) {
+		this.status = status;
 	}
 
 	public void setUuid(UUID uuid) {
 		this.uuid = uuid;
 	}
 
-	public void setOrgId(Long orgId) {
-		this.orgId = orgId;
-	}
-
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 
 	public void setDescription(String description) {
@@ -81,48 +87,32 @@ public class TechStack {
 		this.ownerId = ownerId;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public void setCreatedBy(Long createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public void setCreatedDate(Timestamp createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public void setLastModifiedBy(Long lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
-	}
-
-	public void setLastModifiedDate(Timestamp lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
-
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
-	}
-
 	public void setGoalList(List<Goal> goalList) {
 		this.goalList = goalList;
 	}
 
-	public Long getId() {
-		return id;
+	public void setOrgId(Long orgId) {
+		this.orgId = orgId;
+	}
+
+	public TechStackStatus getStatus() {
+		return status;
 	}
 
 	public UUID getUuid() {
 		return uuid;
 	}
 
-	public Long getOrgId() {
-		return orgId;
-	}
-
 	public String getName() {
 		return name;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public Boolean getIsActive() {
+		return isActive;
 	}
 
 	public String getDescription() {
@@ -133,31 +123,11 @@ public class TechStack {
 		return ownerId;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public Long getCreatedBy() {
-		return createdBy;
-	}
-
-	public Timestamp getCreatedDate() {
-		return createdDate;
-	}
-
-	public Long getLastModifiedBy() {
-		return lastModifiedBy;
-	}
-
-	public Timestamp getLastModifiedDate() {
-		return lastModifiedDate;
-	}
-
-	public Boolean getIsActive() {
-		return isActive;
-	}
-
 	public List<Goal> getGoalList() {
 		return goalList;
+	}
+
+	public Long getOrgId() {
+		return orgId;
 	}
 }
