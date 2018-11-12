@@ -34,7 +34,7 @@ CREATE TYPE role_enum AS ENUM ('STACK_OWNER','ADMIN');
 /** dummy table  for user role **/
 CREATE TABLE user_role(
 	id BIGSERIAL NOT NULL PRIMARY KEY,
-	user_id BIGINT NOT NULL,
+	user_id bigint,
 	role role_enum ,
 	created_by BIGINT NOT NULL,
 	last_modified_by BIGINT NOT NULL,
@@ -53,10 +53,10 @@ CREATE TYPE tech_stack_status AS ENUM
 CREATE TABLE tech_stack(
 id BIGSERIAL NOT NULL PRIMARY KEY,
     uuid UUID NOT NULL DEFAULT uuid_generate_v4(),
-    org_id BIGINT NOT NULL,
+    org_id bigint,
     name VARCHAR(50) UNIQUE NOT NULL,
     description VARCHAR(255)  NOT NULL,
-    owner_id bigint NOT NULL,				--FK WRS--
+    owner_id bigint,				--FK WRS--
 	status tech_stack_status,
     created_by bigint NOT NULL,				--FK WRS--
 	created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -74,14 +74,14 @@ CREATE TABLE goal
 (
    id BIGSERIAL NOT NULL PRIMARY KEY,
    uuid UUID NOT NULL DEFAULT uuid_generate_v4(),
-   org_id BIGINT NOT NULL,
-   tech_stack_id BIGINT NOT NULL,
+   org_id bigint,
+   tech_stack_id bigint,
    goal_id VARCHAR(255) UNIQUE NOT NULL,
    version VARCHAR(50) NOT NULL,
    name VARCHAR(50) UNIQUE NOT NULL,
    description VARCHAR(255) ,
    status goal_status NOT NULL,
-   level_id BIGINT NOT NULL,
+   level_id bigint,
    is_deleted boolean NOT NULL DEFAULT FALSE,
    credit_point_id BIGINT,
    tags VARCHAR(255),
@@ -110,8 +110,8 @@ CREATE TYPE goal_role AS ENUM ('COORDINATOR','EVALUATOR');
 /** Goal member table**/
 CREATE TABLE goal_member(
 	id BIGSERIAL PRIMARY KEY,
-	goal_id BIGINT NOT NULL,
-	user_id BIGINT NOT NULL,	--FK WRS--
+	goal_id bigint,
+	user_id bigint,	--FK WRS--
 	role goal_role NOT NULL,
 	created_by BIGINT NOT NULL,
 	last_modified_by BIGINT NOT NULL,
@@ -126,8 +126,8 @@ CREATE TABLE goal_member(
 /*  Goal prerequisite */
 CREATE TABLE goal_prerequisite(
  	id BIGSERIAL NOT NULL PRIMARY KEY ,
-	goal_id BIGINT NOT NULL,
-	prerequisite_goal_id BIGINT NOT NULL,
+	goal_id bigint,
+	prerequisite_goal_id bigint,
 	created_by BIGINT NULL ,
 	created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, /*default value*/
 	last_modified_by BIGINT , 
@@ -142,12 +142,12 @@ CREATE TABLE goal_prerequisite(
 /*Goal chapter*/
 CREATE TABLE goal_chapter(
  	id BIGSERIAL NOT NULL PRIMARY KEY ,
-	goal_id BIGINT NOT NULL,
+	goal_id bigint,
 	name VARCHAR(255),
 	credits FLOAT,
-	content_link JSON,
+	content_link VARCHAR(255),
 	chapter_sequence INT,
-	additional_link JSON,
+	additional_link VARCHAR(255),
 	created_by BIGINT NOT NULL ,--FK WRS--
 	created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	last_modified_by BIGINT NOT NULL, --FK WRS--
@@ -164,14 +164,14 @@ CREATE TABLE user_goal
 (
    id BIGSERIAL PRIMARY KEY,
    uuid UUID NOT NULL DEFAULT uuid_generate_v4(),
-   goal_id bigint NOT NULL,
-   user_id bigint NOT NULL,	--FK WRS--
-   quarter_id bigint NOT NULL,
+   goal_id bigint,
+   user_id bigint,	--FK WRS--
+   quarter_id bigint,
    status user_goal_status_enum NOT NULL,
    is_deleted boolean NOT NULL,
    approved_by bigint NOT NULL,	--FK WRS--
    created_by bigint NOT NULL, --FK WRS--
-   creation_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,  /*default value */
+   created_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,  /*default value */
    last_modified_by bigint, --FK WRS--
    last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
    CONSTRAINT unique_entry UNIQUE (goal_id, user_id),
@@ -187,30 +187,29 @@ CREATE TABLE user_goal_claim
 (
    id BIGSERIAL PRIMARY KEY,
    uuid UUID NOT NULL DEFAULT uuid_generate_v4(),
-   user_goal_id bigint NOT NULL,
+   user_goal_id bigint,
    claimed_credits double precision NOT NULL,
-   chapters_completed json NOT NULL,
+   chapters_completed VARCHAR(255) NOT NULL,
    assignment_link varchar(500) NOT NULL,
    time_spent_mins double precision NOT NULL,
-   assignment_quality_id bigint NOT NULL,
+   assignment_quality_id bigint,
    comment varchar(255),
    feedback varchar(255),
    created_by bigint NOT NULL, --FK WRS--
-   creation_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, /*default value */
+   created_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, /*default value */
    last_modified_by bigint, --FK WRS--
    last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	is_active boolean NOT NULL,
    CONSTRAINT unique_user_goal UNIQUE (user_goal_id),
    FOREIGN KEY (user_goal_id) REFERENCES user_goal(id) /*@OneToOne*/,
    FOREIGN KEY (assignment_quality_id) REFERENCES assignment_quality(id) /*@ManyToOne*/
-
 );
    
               
 /* user goal evaluation */  
 CREATE TABLE user_goal_evaluation(
     id BIGSERIAL NOT NULL PRIMARY KEY,
-    user_goal_claimed_id bigint NOT NULL, 
+    user_goal_claimed_id bigint, 
     approved_credit double precision NOT NULL,
     feedback varchar(255) ,
     evaluated_by bigint NOT NULL,           --FK WRS--

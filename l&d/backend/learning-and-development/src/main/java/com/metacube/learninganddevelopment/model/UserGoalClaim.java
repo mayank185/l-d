@@ -44,8 +44,6 @@ public class UserGoalClaim extends Auditable<Long> {
 
 	private Boolean isActive;
 
-	private Date creationDate;
-
 	private Double timeSpentMins;
 
 	private Double claimedCredits;
@@ -122,10 +120,6 @@ public class UserGoalClaim extends Auditable<Long> {
 		this.assignmentQuality = assignmentQuality;
 	}
 
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
-
 	public void setFeedback(String feedback) {
 		this.feedback = feedback;
 	}
@@ -172,10 +166,6 @@ public class UserGoalClaim extends Auditable<Long> {
 
 	public AssignmentQuality getAssignmentQuality() {
 		return assignmentQuality;
-	}
-
-	public Date getCreationDate() {
-		return creationDate;
 	}
 
 	public String getFeedback() {

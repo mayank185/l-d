@@ -40,8 +40,6 @@ public class UserGoal extends Auditable<Long> {
 
 	private Long approvedBy;
 
-	private Date creationDate;
-
 	private Boolean isDeleted;
 
 	private UUID uuid = UUID.randomUUID();
@@ -77,10 +75,6 @@ public class UserGoal extends Auditable<Long> {
 		this.userGoalClaim = userGoalClaim;
 	}
 
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
-
 	public void setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
@@ -111,10 +105,6 @@ public class UserGoal extends Auditable<Long> {
 
 	public UserGoalClaim getUserGoalClaim() {
 		return userGoalClaim;
-	}
-
-	public Date getCreationDate() {
-		return creationDate;
 	}
 
 	public Boolean getIsDeleted() {

@@ -43,9 +43,7 @@ public class GoalChapter extends Auditable<Long> {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "goal_id")
-	@Enumerated(EnumType.STRING)
-	@Type(type = "com.metacube.learninganddevelopment.model.SQLEnumType")
+	@JoinColumn(name = "goal_id", nullable=false)
 	private Goal goal;
 
 	public void setContentLink(String contentLink) {

@@ -1,54 +1,29 @@
 package com.metacube.learninganddevelopment.model;
 
-import javax.persistence.GeneratedValue;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import com.metacube.learninganddevelopment.model.GoalStatus;
-
-import javax.persistence.Enumerated;
-
-import javax.persistence.JoinColumn;
-
-import org.hibernate.annotations.Type;
-
-import com.metacube.learninganddevelopment.model.OrgUser;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import com.metacube.learninganddevelopment.model.Goal;
-
-import com.metacube.learninganddevelopment.model.GoalChapter;
-
-import javax.persistence.Id;
-
-import com.metacube.learninganddevelopment.model.GoalLevel;
-
-import javax.persistence.EnumType;
-
-import javax.persistence.JoinTable;
-
-import javax.persistence.OneToMany;
-
-import javax.persistence.GenerationType;
-
+import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
-import java.util.List;
-
-import com.metacube.learninganddevelopment.model.CreditPoint;
-
-import com.metacube.learninganddevelopment.model.GoalClassification;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-
-import java.util.Date;
-
-import javax.persistence.ManyToOne;
-
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-import com.metacube.learninganddevelopment.model.TechStack;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Type;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -88,9 +63,9 @@ public class Goal extends Auditable<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL}, orphanRemoval=true)
 	@JoinColumn(name = "goal_id")
-	@JsonIgnore
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private List<GoalChapter> goalChapterList;
 
 	@Enumerated(EnumType.STRING)
@@ -99,31 +74,23 @@ public class Goal extends Auditable<Long> {
 
 	@ManyToOne
 	@JoinColumn(name = "level_id")
-	@Enumerated(EnumType.STRING)
-	@Type(type = "com.metacube.learninganddevelopment.model.SQLEnumType")
 	private GoalLevel goalLevel;
 
 	@ManyToOne
 	@JoinColumn(name = "tech_stack_id")
-	@Enumerated(EnumType.STRING)
-	@Type(type = "com.metacube.learninganddevelopment.model.SQLEnumType")
 	private TechStack techStack;
 
 	@ManyToOne
 	@JoinColumn(name = "credit_point_id")
-	@Enumerated(EnumType.STRING)
-	@Type(type = "com.metacube.learninganddevelopment.model.SQLEnumType")
 	private CreditPoint creditPoint;
 
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(name = "goal_member", joinColumns = @JoinColumn(name = "goalId"), inverseJoinColumns = @JoinColumn(name = "userId"))
 	@JsonIgnore
 	private List<OrgUser> goalMemberList;
 
 	@ManyToOne
 	@JoinColumn(name = "goal_classification_id")
-	@Enumerated(EnumType.STRING)
-	@Type(type = "com.metacube.learninganddevelopment.model.SQLEnumType")
 	private GoalClassification goalClassification;
 
 	@ManyToMany
