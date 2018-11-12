@@ -119,7 +119,7 @@ CREATE TABLE goal_member(
 	last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	is_active boolean DEFAULT true,
 	UNIQUE (goal_id, user_id),
-	FOREIGN KEY (goal_id) REFERENCES goal(id) /*@ManyToMany(org_user, user_id)*/
+	FOREIGN KEY (goal_id) REFERENCES goal(id) /*@ManyToOne*/
 );
 
 
