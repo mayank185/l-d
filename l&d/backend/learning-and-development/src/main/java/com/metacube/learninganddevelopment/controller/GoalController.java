@@ -51,7 +51,7 @@ public class GoalController {
 	public Goal deleteGoal(@PathVariable Long id){
 		Goal goal = goalRepository.getOne(id);
 		goalRepository.deleteById(id);
-		return goal;
+		return null;
 	}
 	
 	@GetMapping("/{id}")

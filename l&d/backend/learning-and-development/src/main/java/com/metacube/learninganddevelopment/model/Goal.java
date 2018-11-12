@@ -14,16 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Type;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -31,9 +26,9 @@ public class Goal extends Auditable<Long> {
 
 	private Long orgId;
 
-	private String tags;
-
 	private String name;
+
+	private String tags;
 
 	private String goalId;
 
@@ -63,47 +58,48 @@ public class Goal extends Auditable<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToMany(cascade = {CascadeType.ALL}, orphanRemoval=true)
-	@JoinColumn(name = "goal_id")
-	@JsonProperty(access = Access.WRITE_ONLY)
-	private List<GoalChapter> goalChapterList;
-
 	@Enumerated(EnumType.STRING)
 	@Type(type = "com.metacube.learninganddevelopment.model.SQLEnumType")
 	private GoalStatus status;
 
-	@ManyToOne
-	@JoinColumn(name = "level_id")
-	private GoalLevel goalLevel;
+	@OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true)
+	@JoinColumn(name = "goal_id")
+	private List<GoalMember> goalMemberList;
 
-	@ManyToOne
-	@JoinColumn(name = "tech_stack_id")
-	private TechStack techStack;
-
-	@ManyToOne
-	@JoinColumn(name = "credit_point_id")
-	private CreditPoint creditPoint;
-
-	@ManyToMany(cascade = {CascadeType.ALL})
-	@JoinTable(name = "goal_member", joinColumns = @JoinColumn(name = "goalId"), inverseJoinColumns = @JoinColumn(name = "userId"))
-	@JsonIgnore
-	private List<OrgUser> goalMemberList;
-
-	@ManyToOne
-	@JoinColumn(name = "goal_classification_id")
-	private GoalClassification goalClassification;
+	@OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true)
+	@JoinColumn(name = "goal_id")
+	private List<GoalChapter> goalChapterList;
 
 	@ManyToMany
 	@JoinTable(name = "goal_prerequisite", joinColumns = @JoinColumn(name = "prerequisiteGoalId"), inverseJoinColumns = @JoinColumn(name = "goalId"))
-	@JsonIgnore
 	private List<Goal> goalPrerequisiteList;
 
-	public void setStatus(GoalStatus status) {
-		this.status = status;
+	public void setGoalChapterList(List<GoalChapter> goalChapterList) {
+		this.goalChapterList = goalChapterList;
+	}
+
+	public void setInactivationDate(Date inactivationDate) {
+		this.inactivationDate = inactivationDate;
+	}
+
+	public void setEsimatedEffort(Float esimatedEffort) {
+		this.esimatedEffort = esimatedEffort;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setGoalPrerequisiteList(List<Goal> goalPrerequisiteList) {
+		this.goalPrerequisiteList = goalPrerequisiteList;
 	}
 
 	public void setOtherPrerequisite(String otherPrerequisite) {
 		this.otherPrerequisite = otherPrerequisite;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void setActivationDate(Date activationDate) {
@@ -114,92 +110,76 @@ public class Goal extends Auditable<Long> {
 		this.courseCost = courseCost;
 	}
 
-	public void setGoalClassification(GoalClassification goalClassification) {
-		this.goalClassification = goalClassification;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public void setTechStack(TechStack techStack) {
-		this.techStack = techStack;
-	}
-
-	public void setTags(String tags) {
-		this.tags = tags;
-	}
-
-	public void setOrgId(Long orgId) {
-		this.orgId = orgId;
-	}
-
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
-
-	public void setGoalChapterList(List<GoalChapter> goalChapterList) {
-		this.goalChapterList = goalChapterList;
+	public void setVersion(String version) {
+		this.version = version;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public void setGoalPrerequisiteList(List<Goal> goalPrerequisiteList) {
-		this.goalPrerequisiteList = goalPrerequisiteList;
-	}
-
-	public void setGoalMemberList(List<OrgUser> goalMemberList) {
-		this.goalMemberList = goalMemberList;
-	}
-
-	public void setEsimatedEffort(Float esimatedEffort) {
-		this.esimatedEffort = esimatedEffort;
-	}
-
 	public void setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
+	}
+
+	public void setStatus(GoalStatus status) {
+		this.status = status;
 	}
 
 	public void setGoalId(String goalId) {
 		this.goalId = goalId;
 	}
 
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
-	}
-
-	public void setCreditPoint(CreditPoint creditPoint) {
-		this.creditPoint = creditPoint;
-	}
-
 	public void setCourseLink(String courseLink) {
 		this.courseLink = courseLink;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTags(String tags) {
+		this.tags = tags;
 	}
 
-	public void setVersion(String version) {
-		this.version = version;
+	public void setGoalMemberList(List<GoalMember> goalMemberList) {
+		this.goalMemberList = goalMemberList;
 	}
 
-	public void setInactivationDate(Date inactivationDate) {
-		this.inactivationDate = inactivationDate;
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 
-	public void setGoalLevel(GoalLevel goalLevel) {
-		this.goalLevel = goalLevel;
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
 	}
 
-	public GoalStatus getStatus() {
-		return status;
+	public void setOrgId(Long orgId) {
+		this.orgId = orgId;
+	}
+
+	public List<GoalChapter> getGoalChapterList() {
+		return goalChapterList;
+	}
+
+	public Date getInactivationDate() {
+		return inactivationDate;
+	}
+
+	public Float getEsimatedEffort() {
+		return esimatedEffort;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public List<Goal> getGoalPrerequisiteList() {
+		return goalPrerequisiteList;
 	}
 
 	public String getOtherPrerequisite() {
 		return otherPrerequisite;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public Date getActivationDate() {
@@ -210,83 +190,47 @@ public class Goal extends Auditable<Long> {
 		return courseCost;
 	}
 
-	public GoalClassification getGoalClassification() {
-		return goalClassification;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public TechStack getTechStack() {
-		return techStack;
-	}
-
-	public String getTags() {
-		return tags;
-	}
-
-	public Long getOrgId() {
-		return orgId;
-	}
-
-	public UUID getUuid() {
-		return uuid;
-	}
-
-	public List<GoalChapter> getGoalChapterList() {
-		return goalChapterList;
+	public String getVersion() {
+		return version;
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public List<Goal> getGoalPrerequisiteList() {
-		return goalPrerequisiteList;
-	}
-
-	public List<OrgUser> getGoalMemberList() {
-		return goalMemberList;
-	}
-
-	public Float getEsimatedEffort() {
-		return esimatedEffort;
-	}
-
 	public Boolean getIsDeleted() {
 		return isDeleted;
+	}
+
+	public GoalStatus getStatus() {
+		return status;
 	}
 
 	public String getGoalId() {
 		return goalId;
 	}
 
-	public Boolean getIsActive() {
-		return isActive;
-	}
-
-	public CreditPoint getCreditPoint() {
-		return creditPoint;
-	}
-
 	public String getCourseLink() {
 		return courseLink;
 	}
 
-	public String getName() {
-		return name;
+	public String getTags() {
+		return tags;
 	}
 
-	public String getVersion() {
-		return version;
+	public List<GoalMember> getGoalMemberList() {
+		return goalMemberList;
 	}
 
-	public Date getInactivationDate() {
-		return inactivationDate;
+	public Boolean getIsActive() {
+		return isActive;
 	}
 
-	public GoalLevel getGoalLevel() {
-		return goalLevel;
+	public UUID getUuid() {
+		return uuid;
+	}
+
+	public Long getOrgId() {
+		return orgId;
 	}
 }

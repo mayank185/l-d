@@ -1,26 +1,17 @@
 package com.metacube.learninganddevelopment.model;
 
-import javax.persistence.GenerationType;
-
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.Entity;
-
-import com.metacube.learninganddevelopment.model.Goal;
-
-import javax.persistence.JoinColumn;
-
-import javax.persistence.Id;
-
-import javax.persistence.OneToMany;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -36,10 +27,21 @@ public class CreditPoint extends Auditable<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToMany
+	@OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true)
 	@JoinColumn(name = "credit_point_id")
-	@JsonIgnore
 	private List<Goal> goalList;
+
+	public void setPoints(Float points) {
+		this.points = points;
+	}
+
+	public void setGoalList(List<Goal> goalList) {
+		this.goalList = goalList;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
 
 	public void setUuid(UUID uuid) {
 		this.uuid = uuid;
@@ -49,16 +51,16 @@ public class CreditPoint extends Auditable<Long> {
 		this.id = id;
 	}
 
-	public void setGoalList(List<Goal> goalList) {
-		this.goalList = goalList;
+	public Float getPoints() {
+		return points;
 	}
 
-	public void setPoints(Float points) {
-		this.points = points;
+	public List<Goal> getGoalList() {
+		return goalList;
 	}
 
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
+	public Boolean getIsActive() {
+		return isActive;
 	}
 
 	public UUID getUuid() {
@@ -67,17 +69,5 @@ public class CreditPoint extends Auditable<Long> {
 
 	public Long getId() {
 		return id;
-	}
-
-	public List<Goal> getGoalList() {
-		return goalList;
-	}
-
-	public Float getPoints() {
-		return points;
-	}
-
-	public Boolean getIsActive() {
-		return isActive;
 	}
 }

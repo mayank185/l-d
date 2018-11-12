@@ -1,26 +1,17 @@
 package com.metacube.learninganddevelopment.model;
 
-import javax.persistence.GenerationType;
-
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import java.util.List;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.Entity;
-
-import com.metacube.learninganddevelopment.model.UserGoalClaim;
-
-import javax.persistence.JoinColumn;
-
-import javax.persistence.Id;
-
-import javax.persistence.OneToMany;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -36,21 +27,12 @@ public class AssignmentQuality extends Auditable<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToMany
+	@OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true)
 	@JoinColumn(name = "assignment_quality_id")
-	@JsonIgnore
 	private List<UserGoalClaim> userGoalClaimList;
-
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public void setQuality(String quality) {
-		this.quality = quality;
 	}
 
 	public void setUserGoalClaimList(List<UserGoalClaim> userGoalClaimList) {
@@ -61,16 +43,16 @@ public class AssignmentQuality extends Auditable<Long> {
 		this.isActive = isActive;
 	}
 
-	public UUID getUuid() {
-		return uuid;
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
+	}
+
+	public void setQuality(String quality) {
+		this.quality = quality;
 	}
 
 	public Long getId() {
 		return id;
-	}
-
-	public String getQuality() {
-		return quality;
 	}
 
 	public List<UserGoalClaim> getUserGoalClaimList() {
@@ -79,5 +61,13 @@ public class AssignmentQuality extends Auditable<Long> {
 
 	public Boolean getIsActive() {
 		return isActive;
+	}
+
+	public UUID getUuid() {
+		return uuid;
+	}
+
+	public String getQuality() {
+		return quality;
 	}
 }

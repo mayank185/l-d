@@ -1,26 +1,17 @@
 package com.metacube.learninganddevelopment.model;
 
-import javax.persistence.GenerationType;
-
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.Entity;
-
-import com.metacube.learninganddevelopment.model.Goal;
-
-import javax.persistence.JoinColumn;
-
-import javax.persistence.Id;
-
-import javax.persistence.OneToMany;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -36,21 +27,12 @@ public class GoalLevel extends Auditable<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToMany
+	@OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true)
 	@JoinColumn(name = "level_id")
-	@JsonIgnore
 	private List<Goal> goalList;
 
 	public void setLevel(String level) {
 		this.level = level;
-	}
-
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public void setGoalList(List<Goal> goalList) {
@@ -61,16 +43,16 @@ public class GoalLevel extends Auditable<Long> {
 		this.isActive = isActive;
 	}
 
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getLevel() {
 		return level;
-	}
-
-	public UUID getUuid() {
-		return uuid;
-	}
-
-	public Long getId() {
-		return id;
 	}
 
 	public List<Goal> getGoalList() {
@@ -79,5 +61,13 @@ public class GoalLevel extends Auditable<Long> {
 
 	public Boolean getIsActive() {
 		return isActive;
+	}
+
+	public UUID getUuid() {
+		return uuid;
+	}
+
+	public Long getId() {
+		return id;
 	}
 }

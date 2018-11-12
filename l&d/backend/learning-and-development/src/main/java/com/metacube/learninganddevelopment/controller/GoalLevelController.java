@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.metacube.learninganddevelopment.model.Goal;
 import com.metacube.learninganddevelopment.model.GoalChapter;
 import com.metacube.learninganddevelopment.model.GoalLevel;
+import com.metacube.learninganddevelopment.model.GoalMember;
 import com.metacube.learninganddevelopment.model.OrgUser;
 import com.metacube.learninganddevelopment.model.TechStack;
 import com.metacube.learninganddevelopment.model.UserGoal;
@@ -76,7 +77,7 @@ public class GoalLevelController {
 	}
 	
 	@GetMapping("/goal/{id}")
-	public List<OrgUser> getOrgUsersByGoalId(@PathVariable("id") long id){
+	public List<GoalMember> getOrgUsersByGoalId(@PathVariable("id") long id){
 		return goalRepository.findById(id).get().getGoalMemberList();
 	}
 	
@@ -84,12 +85,12 @@ public class GoalLevelController {
 	public List<GoalChapter> getGoalChapterByGoalId(@PathVariable("id") long id){
 		return goalRepository.findById(id).get().getGoalChapterList();
 	}
-	
+/*	
 	@GetMapping("/goal-chapter/goal/{id}")
 	public Goal getGoalByGoalChapterId(@PathVariable("id") long id){
 		return goalChapterRepository.findById(id).get().getGoal();
 	}
-
+*/
 	@GetMapping("/goal-chapter/goal-user/{id}")
 	public UserGoal getGoalOfUserById(@PathVariable("id") Long id){
 		return userGoalRepository.getOne(id);

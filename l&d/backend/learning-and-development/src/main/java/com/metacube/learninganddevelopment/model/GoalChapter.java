@@ -1,26 +1,11 @@
 package com.metacube.learninganddevelopment.model;
 
-import javax.persistence.GenerationType;
-
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-
-import javax.persistence.EnumType;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.Entity;
-
-import com.metacube.learninganddevelopment.model.Goal;
-
-import javax.persistence.Enumerated;
-
-import javax.persistence.JoinColumn;
-
-import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.Type;
-
-import javax.persistence.Id;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -42,9 +27,13 @@ public class GoalChapter extends Auditable<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne
-	@JoinColumn(name = "goal_id", nullable=false)
-	private Goal goal;
+	public void setAdditionalLink(String additionalLink) {
+		this.additionalLink = additionalLink;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public void setContentLink(String contentLink) {
 		this.contentLink = contentLink;
@@ -54,20 +43,8 @@ public class GoalChapter extends Auditable<Long> {
 		this.credits = credits;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public void setGoal(Goal goal) {
-		this.goal = goal;
-	}
-
-	public void setAdditionalLink(String additionalLink) {
-		this.additionalLink = additionalLink;
 	}
 
 	public void setChapterSequence(Integer chapterSequence) {
@@ -78,6 +55,14 @@ public class GoalChapter extends Auditable<Long> {
 		this.isActive = isActive;
 	}
 
+	public String getAdditionalLink() {
+		return additionalLink;
+	}
+
+	public String getName() {
+		return name;
+	}
+
 	public String getContentLink() {
 		return contentLink;
 	}
@@ -86,20 +71,8 @@ public class GoalChapter extends Auditable<Long> {
 		return credits;
 	}
 
-	public String getName() {
-		return name;
-	}
-
 	public Long getId() {
 		return id;
-	}
-
-	public Goal getGoal() {
-		return goal;
-	}
-
-	public String getAdditionalLink() {
-		return additionalLink;
 	}
 
 	public Integer getChapterSequence() {

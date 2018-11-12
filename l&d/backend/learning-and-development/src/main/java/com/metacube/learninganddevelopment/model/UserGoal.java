@@ -1,36 +1,20 @@
 package com.metacube.learninganddevelopment.model;
 
-import javax.persistence.GenerationType;
-
 import java.util.UUID;
 
-import javax.persistence.GeneratedValue;
-
-import com.metacube.learninganddevelopment.model.UserGoalStatusEnum;
-
-import javax.persistence.EnumType;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-
-import java.util.Date;
-
-import javax.persistence.Id;
-
-import com.metacube.learninganddevelopment.model.UserGoalClaim;
-
-import com.metacube.learninganddevelopment.model.GoalQuarter;
-
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Type;
 
-import javax.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -52,23 +36,20 @@ public class UserGoal extends Auditable<Long> {
 	@Type(type = "com.metacube.learninganddevelopment.model.SQLEnumType")
 	private UserGoalStatusEnum status;
 
-	@OneToOne(mappedBy = "userGoal")
-	@Enumerated(EnumType.STRING)
-	@Type(type = "com.metacube.learninganddevelopment.model.SQLEnumType")
+	@OneToOne(mappedBy = "userGoal", cascade = { CascadeType.ALL }, orphanRemoval = true)
+	@JoinColumn(name = "user_goal_id")
 	private UserGoalClaim userGoalClaim;
-
-	@ManyToOne
-	@JoinColumn(name = "quarter_id")
-	@Enumerated(EnumType.STRING)
-	@Type(type = "com.metacube.learninganddevelopment.model.SQLEnumType")
-	private GoalQuarter goalQuarter;
-
-	public void setStatus(UserGoalStatusEnum status) {
-		this.status = status;
-	}
 
 	public void setUuid(UUID uuid) {
 		this.uuid = uuid;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public void setStatus(UserGoalStatusEnum status) {
+		this.status = status;
 	}
 
 	public void setUserGoalClaim(UserGoalClaim userGoalClaim) {
@@ -79,28 +60,24 @@ public class UserGoal extends Auditable<Long> {
 		this.isDeleted = isDeleted;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setApprovedBy(Long approvedBy) {
+		this.approvedBy = approvedBy;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public void setApprovedBy(Long approvedBy) {
-		this.approvedBy = approvedBy;
+	public UUID getUuid() {
+		return uuid;
 	}
 
-	public void setGoalQuarter(GoalQuarter goalQuarter) {
-		this.goalQuarter = goalQuarter;
+	public Long getUserId() {
+		return userId;
 	}
 
 	public UserGoalStatusEnum getStatus() {
 		return status;
-	}
-
-	public UUID getUuid() {
-		return uuid;
 	}
 
 	public UserGoalClaim getUserGoalClaim() {
@@ -111,19 +88,11 @@ public class UserGoal extends Auditable<Long> {
 		return isDeleted;
 	}
 
-	public Long getUserId() {
-		return userId;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
 	public Long getApprovedBy() {
 		return approvedBy;
 	}
 
-	public GoalQuarter getGoalQuarter() {
-		return goalQuarter;
+	public Long getId() {
+		return id;
 	}
 }

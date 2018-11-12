@@ -1,22 +1,15 @@
 package com.metacube.learninganddevelopment.model;
 
-import javax.persistence.GenerationType;
-
-import javax.persistence.GeneratedValue;
-
-import javax.persistence.EnumType;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import com.metacube.learninganddevelopment.model.RoleEnum;
-
 import javax.persistence.Entity;
-
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -36,23 +29,23 @@ public class UserRole extends Auditable<Long> {
 		this.role = role;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public RoleEnum getRole() {
 		return role;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
 	public Boolean getIsActive() {
 		return isActive;
+	}
+
+	public Long getId() {
+		return id;
 	}
 }
