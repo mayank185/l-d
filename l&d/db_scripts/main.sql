@@ -26,7 +26,7 @@ CREATE TABLE org_user (
 	last_modified_by BIGINT NOT NULL,
 	created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	is_active boolean DEFAULT true
+	is_active boolean DEFAULT TRUE NOT NULL
 );
 
 CREATE TYPE role_enum AS ENUM ('STACK_OWNER','ADMIN');
@@ -40,7 +40,7 @@ CREATE TABLE user_role(
 	last_modified_by BIGINT NOT NULL,
 	created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	is_active boolean DEFAULT true,
+	is_active boolean DEFAULT TRUE NOT NULL,
 	FOREIGN KEY(user_id) REFERENCES org_user(id) /*@ManyToMany*/
 );
 
@@ -62,7 +62,7 @@ id BIGSERIAL NOT NULL PRIMARY KEY,
 	created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	last_modified_by bigint NOT NULL,			--FK WRS--
 	last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-	is_active boolean DEFAULT FALSE NOT NULL
+	is_active boolean DEFAULT TRUE NOT NULL
 );
 
 /* goal status enum */
@@ -94,7 +94,7 @@ CREATE TABLE goal
    created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
    last_modified_by bigint,			--FK WRS--
    last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-   is_active boolean DEFAULT FALSE NOT NULL,
+   is_active boolean DEFAULT TRUE NOT NULL,
    course_cost double precision DEFAULT NULL,
    course_link varchar(255) DEFAULT NULL,
    FOREIGN KEY (tech_stack_id) REFERENCES tech_stack(id) /*@ManyToOne*/,
@@ -117,7 +117,7 @@ CREATE TABLE goal_member(
 	last_modified_by BIGINT NOT NULL,
 	created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	is_active boolean DEFAULT true,
+	is_active boolean DEFAULT TRUE NOT NULL,
 	UNIQUE (goal_id, user_id),
 	FOREIGN KEY (goal_id) REFERENCES goal(id) /*@ManyToOne*/
 );
@@ -132,7 +132,7 @@ CREATE TABLE goal_prerequisite(
 	created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, /*default value*/
 	last_modified_by BIGINT , 
 	last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	is_active BOOLEAN DEFAULT true,
+	is_active boolean DEFAULT TRUE NOT NULL,
 	UNIQUE (goal_id, prerequisite_goal_id),
 	FOREIGN KEY (goal_id) REFERENCES goal(id) /*@ManyToMany*/,
 	FOREIGN KEY (prerequisite_goal_id) REFERENCES goal(id) /*@ManyToMany(goal, goal_id)*/
@@ -152,7 +152,7 @@ CREATE TABLE goal_chapter(
 	created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	last_modified_by BIGINT NOT NULL, --FK WRS--
 	last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	is_active BOOLEAN DEFAULT true,
+	is_active boolean DEFAULT TRUE NOT NULL,
 	FOREIGN KEY (goal_id) REFERENCES goal(id) /*@ManyToOne*/
 );
 
@@ -174,6 +174,7 @@ CREATE TABLE user_goal
    created_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,  /*default value */
    last_modified_by bigint, --FK WRS--
    last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   is_active boolean DEFAULT TRUE NOT NULL,
    CONSTRAINT unique_entry UNIQUE (goal_id, user_id),
    FOREIGN KEY (goal_id) REFERENCES goal(id) /*@ManyToMany*/,
    FOREIGN KEY (quarter_id) REFERENCES goal_quarter(id) /*@ManyToOne*/
@@ -199,7 +200,7 @@ CREATE TABLE user_goal_claim
    created_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, /*default value */
    last_modified_by bigint, --FK WRS--
    last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	is_active boolean NOT NULL,
+	is_active boolean DEFAULT TRUE NOT NULL,
    CONSTRAINT unique_user_goal UNIQUE (user_goal_id),
    FOREIGN KEY (user_goal_id) REFERENCES user_goal(id) /*@OneToOne*/,
    FOREIGN KEY (assignment_quality_id) REFERENCES assignment_quality(id) /*@ManyToOne*/
@@ -217,7 +218,7 @@ CREATE TABLE user_goal_evaluation(
     created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     last_modified_by bigint NOT NULL,            --FK WRS--
     last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	is_active boolean NOT NULL,
+	is_active boolean DEFAULT TRUE NOT NULL,
 	 FOREIGN KEY (user_goal_claimed_id) REFERENCES user_goal_claim(id) /*@OneToOne*/
 );
 

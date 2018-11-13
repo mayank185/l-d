@@ -36,7 +36,7 @@ CREATE TABLE goal_level
     last_modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     created_by bigint NOT NULL,				--FK WRS--
     created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    is_active boolean DEFAULT FALSE NOT NULL
+    is_active boolean DEFAULT TRUE NOT NULL
 );
 
 CREATE TABLE goal_classification
@@ -48,7 +48,7 @@ CREATE TABLE goal_classification
     last_modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     created_by bigint NOT NULL,				--FK WRS--
     created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    is_active boolean DEFAULT FALSE NOT NULL
+    is_active boolean DEFAULT TRUE NOT NULL
 );
 
 CREATE TABLE goal_quarter
@@ -61,7 +61,7 @@ CREATE TABLE goal_quarter
     last_modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     created_by bigint NOT NULL,				--FK WRS--
     created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    is_active boolean DEFAULT FALSE NOT NULL,
+    is_active boolean DEFAULT TRUE NOT NULL,
     CONSTRAINT unique_quarter UNIQUE (year, quarter)
 );
 
@@ -74,7 +74,7 @@ CREATE TABLE credit_point
     last_modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     created_by bigint NOT NULL,				--FK WRS--
     created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    is_active boolean DEFAULT FALSE NOT NULL
+    is_active boolean DEFAULT TRUE NOT NULL
 );
 
 CREATE TABLE assignment_quality
@@ -86,6 +86,6 @@ CREATE TABLE assignment_quality
     last_modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     created_by bigint NOT NULL,				--FK WRS--
     created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    is_active boolean DEFAULT FALSE NOT NULL
+    is_active boolean DEFAULT TRUE NOT NULL
 );
 

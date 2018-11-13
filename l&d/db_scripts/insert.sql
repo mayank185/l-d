@@ -40,6 +40,8 @@ INSERT INTO org_user(name,email,created_by,last_modified_by) values('dummy user2
 INSERT INTO org_user(name,email,created_by,last_modified_by) values('dummy user3', 'dummy3@dummy3.com',1,1);
 INSERT INTO org_user(name,email,created_by,last_modified_by) values('dummy user4', 'dummy4@dummy4.com',1,1);
 INSERT INTO org_user(name,email,created_by,last_modified_by) values('dummy user5', 'dummy5@dummy.com',1,1);
+INSERT INTO org_user(name,email,created_by,last_modified_by, is_active) values('dummy user6', 'dummy6@dummy.com',1,1,false);
+
 
 --insert query for user_role table---
 select * from user_role;
@@ -48,6 +50,8 @@ INSERT INTO user_role(user_id,role,created_by,last_modified_by) values(2,'STACK_
 INSERT INTO user_role(user_id,role,created_by,last_modified_by) values(3,'STACK_OWNER',1,1);
 INSERT INTO user_role(user_id,created_by,last_modified_by) values(4,1,1);
 INSERT INTO user_role(user_id,created_by,last_modified_by) values(5,1,1);
+INSERT INTO user_role(user_id,created_by,last_modified_by,is_active) values(6,1,1,false);
+
 
 ---insert queries for stack_owner table---
 select * from tech_stack;
@@ -57,6 +61,7 @@ INSERT INTO tech_stack(org_id,name,description,owner_id,status,created_by,last_m
 INSERT INTO tech_stack(org_id,name,description,owner_id,status,created_by,last_modified_by) VALUES(1,'HTML','JAVA JAVA JAVA',3,'Draft',1,1);
 INSERT INTO tech_stack(org_id,name,description,owner_id,status,created_by,last_modified_by) VALUES(1,'CSS','JAVA JAVA JAVA',4,'Active',1,1);
 INSERT INTO tech_stack(org_id,name,description,owner_id,status,created_by,last_modified_by) VALUES(1,'SALESFORCE','JAVA JAVA JAVA',5,'Active',1,1);
+INSERT INTO tech_stack(org_id,name,description,owner_id,status,created_by,last_modified_by,is_active) VALUES(1,'C','JAVA JAVA JAVA',5,'Active',1,1,false);
 
 
 
@@ -72,18 +77,25 @@ VALUES(1 , 1 , 'JAVA.Advanced.Advanced.1' , 1 ,'Advanced' , 'Advanced Java' , 'I
 INSERT INTO goal(org_id  , tech_stack_id , goal_id , version , name , description , status , level_id , is_deleted , credit_point_id , tags , goal_classification_id , other_prerequisite , esimated_effort, created_by, last_modified_by ) 
 VALUES(1 , 2 , 'HTML.html.Beginner.1' , 1 , 'html' , 'Html tutorials' , 'InReview' , 1 , false , 1 , 'html',  1 , 'java java java' , 12, 1, 1  );
 
+INSERT INTO goal(org_id  , tech_stack_id , goal_id , version , name , description , status , level_id , is_deleted , credit_point_id , tags , goal_classification_id , other_prerequisite , esimated_effort, created_by, last_modified_by,is_active) 
+VALUES(1 , 2 , 'c.html.Beginner.1' , 1 , 'html' , 'c' , 'InReview' , 1 , false , 1 , 'html',  1 , 'java java java' , 12, 1, 1,false);
+
+
 --Insert query for Goal member--
 
 INSERT INTO goal_member(goal_id  , user_id , role , created_by  , last_modified_by ) VALUES( 1 , 1 , 'COORDINATOR' , 1 , 1);
 INSERT INTO goal_member(goal_id  , user_id , role , created_by  , last_modified_by ) VALUES( 2 , 1 , 'EVALUATOR' , 1 , 1);
 INSERT INTO goal_member(goal_id  , user_id , role , created_by  , last_modified_by ) VALUES( 3 , 2 , 'COORDINATOR' , 1 , 1);
 INSERT INTO goal_member(goal_id  , user_id , role , created_by  , last_modified_by ) VALUES( 3 , 1 , 'COORDINATOR' , 1 , 1);
+INSERT INTO goal_member(goal_id  , user_id , role , created_by  , last_modified_by,is_active) VALUES( 1 , 3 , 'COORDINATOR' , 1 , 1,false);
 
 
 
 --Insert query for Goal prerequisite--
 
 INSERT INTO goal_prerequisite(goal_id , prerequisite_goal_id , created_by , last_modified_by ) VALUES( 2 , 1 , 2 , 2);
+INSERT INTO goal_prerequisite(goal_id , prerequisite_goal_id , created_by , last_modified_by,is_active ) VALUES( 2 , 2 , 2 , 2,false);
+
 
 --Insert query for Goal Chapter--
 
@@ -96,6 +108,10 @@ INSERT INTO goal_chapter(goal_id , name , credits , content_link , chapter_seque
 INSERT INTO goal_chapter(goal_id , name , credits , content_link , chapter_sequence , created_by , last_modified_by) VALUES 
 (3 , 'Basic HTML' , 5 , '{"link": "https://www.w3schools.com/html/"}' , 1 , 2 , 2);
 
+INSERT INTO goal_chapter(goal_id , name , credits , content_link , chapter_sequence , created_by , last_modified_by,is_active) VALUES 
+(3 , 'Basic HTML' , 5 , '{"link": "https://www.w3schools.com/html/"}' , 1 , 2 , 2,false);
+
+
 --Insert query for User Goal--
 
 INSERT INTO user_goal(goal_id , user_id , quarter_id , status , is_deleted , approved_by , created_by , last_modified_by) VALUES
@@ -106,5 +122,8 @@ INSERT INTO user_goal(goal_id , user_id , quarter_id , status , is_deleted , app
 
 INSERT INTO user_goal(goal_id , user_id , quarter_id , status , is_deleted , approved_by , created_by , last_modified_by) VALUES
 (2 , 4 , 2 , 'Rejected' , true , 2 , 2 , 2);
+
+INSERT INTO user_goal(goal_id , user_id , quarter_id , status , is_deleted , approved_by , created_by , last_modified_by,is_active) VALUES
+(2 , 4 , 2 , 'Rejected' , true , 2 , 2 , 2,false);
 
 
